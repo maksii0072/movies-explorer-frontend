@@ -1,0 +1,149 @@
+.profile {
+  min-height: 100vh;
+  }
+
+  .profile__container {
+    max-width: 410px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+
+  }
+
+  .profile__title {
+    color: #fff;
+    padding: 0;
+    margin: 74px 0 0 0;
+    margin-bottom: 124px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29.05px;
+  }
+
+  .profile__form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .profile__row {
+    max-width: 410px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .profile__field {
+    float: left;
+    margin: 0;
+    padding: 0;
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 13.31px;
+    cursor: text;
+    position: relative;
+    color: #fff;
+  }
+
+  .profile__input {
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    text-align: right;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 13.31px;
+    border: none;
+    outline: none;
+    background-color: #202020;
+  }
+
+  .profile__input-error {
+    margin: 0;
+    padding: 0;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 12px;
+    color: #ff4062;
+    position: absolute;
+    top: 16px;
+    right: 0;
+    text-align: right;
+  }
+
+  .profile__border {
+    border-bottom: 1px solid #424242;
+    margin: 17px 0;
+  }
+
+  .profile__button-save {
+    padding: 0;
+    margin-top: 220px;
+    min-height: 16px;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 15.73px;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    background-color: transparent;
+  }
+
+  .profile__button:hover {
+    color: #3DDC84;
+  }
+
+  .profile__button-logout {
+    padding: 0;
+    margin-top: 16px;
+    min-height: 16px;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 15.73px;
+    text-align: center;
+    align-self: center;
+    color: #ff4062;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+  }
+
+
+
+  @media screen and (max-width: 1023px) {
+
+
+    .profile__title {
+      margin: 236px 0 96px;
+    }
+
+    .profile__button-save {
+      margin-top: 193px;
+    }
+  }
+
+  @media screen and (max-width: 576px) {
+    .profile__container {
+      padding: 0 30px;
+    }
+
+    .profile__title {
+      margin: 70px 0 80px;
+    }
+
+    .profile__input {
+      width: 150px;
+    }
+
+    .profile__button-save {
+      margin-top: 379px;
+      font-size: 12px;
+      line-height: 14.52px;
+    }
+
+    .profile__button-logout {
+      font-size: 12px;
+      line-height: 14.52px;
+    }
+  }

@@ -15,10 +15,10 @@ function Form({
       <Link to="/" className="form__logo">
         <img src={logo} alt="логотип" />
       </Link>
-      <h3 className="form__title">{title}</h3>
+      <h1 className="form__title">{title}</h1>
       <form className="form" id="form">
         {children}
-        <button type="submit" className="form__button-save">
+        <button type="submit" className="form__button-save ">
           {buttonText}
         </button>
       </form>

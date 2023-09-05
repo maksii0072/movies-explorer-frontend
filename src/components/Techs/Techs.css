@@ -1,130 +1,130 @@
 .techs {
-    box-sizing: border-box;
-    padding: 100px 70px;
-    background-color: #272727;
+  box-sizing: border-box;
+  padding: 100px 70px;
+  background-color: #272727;
+}
+
+.techs__container {
+  min-height: 415px;
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+}
+
+.techs__heading {
+  margin: 0;
+  padding: 0;
+  margin: 90px auto 26px;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 58px;
+  text-align: center;
+  letter-spacing: -0.04em;
+  max-width: 730px;
+}
+
+.techs__description {
+  margin: 0 auto;
+  padding: 0;
+  padding-bottom: 100px;
+  max-width: 460px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+}
+
+.techs__list {
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 90px);
+  gap: 10px;
+  justify-content: center;
+  list-style: none;
+}
+
+.techs__list-item {
+  margin: 0;
+  padding: 0;
+  width: 90px;
+  height: 60px;
+  border-radius: 10px;
+  background-color: #303030;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+}
+
+@media screen and (max-width: 1023px) {
+  .techs {
+    padding: 97px 47px;;
   }
 
   .techs__container {
-    min-height: 415px;
-    display: flex;
-    flex-direction: column;
-    color: #fff;
+    min-height: 387px;
   }
 
   .techs__heading {
-    margin: 0;
+    margin: 80px auto 22px;
+    max-width: 600px;
+  }
+
+  .techs__description {
+    padding-bottom: 83px;
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .techs__list {
+    grid-template-columns: repeat(auto-fit, 84px);
+  }
+
+  .techs__list-item {
+    margin: 0 auto;
+    width: 84px;
+    height: 57px;
+    font-size: 14px;
+    line-height: 16.94px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .techs {
+    padding: 70px 18px;
+  }
+
+  .techs__title {
+    padding-bottom: 28px;
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .techs__heading {
+    margin: 0 auto;
     padding: 0;
-    margin: 90px auto 26px;
-    font-weight: 400;
-    font-size: 50px;
-    line-height: 58px;
-    text-align: center;
-    letter-spacing: -0.04em;
-    max-width: 730px;
+    margin-top: 60px;
+    margin-bottom: 24px;
+    font-size: 30px;
+    line-height: 36.31px;
+    max-width: 292px;
   }
 
   .techs__description {
     margin: 0 auto;
     padding: 0;
-    padding-bottom: 100px;
-    max-width: 460px;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 20px;
-    text-align: center;
+    padding-bottom: 50px;
+    max-width: 292px;
+    font-size: 11px;
+    line-height: 16px;
+  }
+
+  .techs__container {
+    min-height: 511px;
   }
 
   .techs__list {
-    margin: 0;
-    padding: 0;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, 90px);
-    gap: 10px;
-    justify-content: center;
-    list-style: none;
+    grid-template-columns: repeat(2, 84px);
   }
-
-  .techs__list-item {
-    margin: 0;
-    padding: 0;
-    width: 90px;
-    height: 60px;
-    border-radius: 10px;
-    background-color: #303030;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
-  }
-
-  @media screen and (max-width: 1023px) {
-    .techs {
-      padding: 90px 50px;
-    }
-
-    .techs__container {
-      min-height: 387px;
-    }
-
-    .techs__heading {
-      margin: 80px auto 22px;
-      max-width: 600px;
-    }
-
-    .techs__description {
-      padding-bottom: 83px;
-      font-size: 14px;
-      line-height: 20px;
-    }
-
-    .techs__list {
-      grid-template-columns: repeat(auto-fit, 84px);
-    }
-
-    .techs__list-item {
-      margin: 0 auto;
-      width: 84px;
-      height: 57px;
-      font-size: 14px;
-      line-height: 16.94px;
-    }
-  }
-
-  @media screen and (max-width: 576px) {
-    .techs {
-      padding: 70px 18px;
-    }
-
-    .techs__title {
-      padding-bottom: 28px;
-      font-size: 18px;
-      line-height: 22px;
-    }
-
-    .techs__heading {
-      margin: 0 auto;
-      padding: 0;
-      margin-top: 60px;
-      margin-bottom: 24px;
-      font-size: 30px;
-      line-height: 36.31px;
-      max-width: 292px;
-    }
-
-    .techs__description {
-      margin: 0 auto;
-      padding: 0;
-      padding-bottom: 50px;
-      max-width: 292px;
-      font-size: 11px;
-      line-height: 16px;
-    }
-
-    .techs__container {
-      min-height: 511px;
-    }
-
-    .techs__list {
-      grid-template-columns: repeat(2, 84px);
-    }
-  }
+}

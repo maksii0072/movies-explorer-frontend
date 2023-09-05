@@ -12,8 +12,9 @@ card {
   }
 
   .card__container {
-    position: relative;
+    /* position: relative; */
     display: flex;
+    align-items: baseline;
     justify-content: space-between;
     padding: 0 16px;
     background-color: #222222;
@@ -45,10 +46,10 @@ card {
   }
 
   .card__like-button {
-    position: absolute;
+    /* position: absolute;
     top: 19px;
     right: 24px;
-    padding: 0;
+    padding: 0; */
     border: none;
     background-color: transparent;
     background-image: url(../../images/like.svg);
@@ -91,6 +92,12 @@ card {
   }
 
   @media screen and (max-width: 1023px) {
+    /* .card__container {
+      /* justify-content: flex-start; */
+      /* padding: 0; */
+
+    /* }  */
+
     .card__image {
       height: 190px;
     }

@@ -11,7 +11,7 @@ function MoviesCard(props) {
         <a href={trailerLink} target="_blank" rel="noreferrer">
           <img
             className="card__image"
-            alt='постер к фильму'
+            alt='постер к фильму 33 слова о дизайне'
             src={image1}
           />
         </a>
@@ -28,7 +28,7 @@ function MoviesCard(props) {
         <a href={trailerLink} target="_blank" rel="noreferrer">
           <img
             className="card__image"
-            alt='постер к фильму'
+            alt='постер к фильму Киноальманах «100 лет дизайна'
             src={image2}
           />
         </a>
@@ -45,7 +45,7 @@ function MoviesCard(props) {
         <a href={trailerLink} target="_blank" rel="noreferrer">
           <img
             className="card__image"
-            alt='постер к фильму'
+            alt='постер к фильму В погоне за Бенкси'
             src={image3}
           />
         </a>
@@ -54,8 +54,10 @@ function MoviesCard(props) {
             <h2 className="card__text">В погоне за Бенкси</h2>
             <p className="card__time">1ч 42м</p>
           </figcaption>
+          <div className="card__container-button">
           <button type="button" className="card__delete-button"></button>
           <button type="button" className={`card__like-button ${ isLiked ? "card__like-button_active" : ""}`} onClick={handleLikeClick}></button>
+          </div>
         </div>
       </li>
     </>

@@ -1,71 +1,71 @@
 .not-found {
-    display: flex;
-    flex-direction: column;
-    color: #fff;
-  }
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+}
 
+.not-found__title {
+  margin: 0;
+  margin-top: 246px;
+  font-weight: 400;
+  font-size: 140px;
+  line-height: 169.43px;
+  text-align: center;
+}
+
+.not-found__text {
+  margin-top: 5px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19.46px;
+  text-align: center;
+}
+
+.not-found__button {
+  margin-top: 184px;
+  margin-bottom: 60px;
+  min-height: 17px;
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #4285F4;
+}
+
+.not-found__button:hover {
+  color: #3DDC84;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1023px) {
   .not-found__title {
-    margin: 0;
-    margin-top: 246px;
-    font-weight: 400;
-    font-size: 140px;
-    line-height: 169.43px;
-    text-align: center;
-  }
-
-  .not-found__text {
-    margin-top: 5px;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 19.46px;
-    text-align: center;
+    margin-top: 408px;
   }
 
   .not-found__button {
-    margin-top: 184px;
-    margin-bottom: 60px;
-    min-height: 17px;
-    text-decoration: none;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 17px;
-    text-align: center;
-    color: #4285F4;
+    margin-bottom: 184px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .not-found__title {
+    margin-top: 329px;
+    font-size: 80px;
+    line-height: 96.82px;
   }
 
-  .not-found__button:hover {
-    color: #3DDC84;
-    cursor: pointer;
+  .not-found__text {
+    margin-top: 10px;
+    font-size: 12px;
+    line-height: 14.52px;
   }
 
-  @media screen and (max-width: 1023px) {
-    .not-found__title {
-      margin-top: 408px;
-    }
-
-    .not-found__button {
-      margin-bottom: 184px;
-    }
+  .not-found__button {
+    margin-top: 284px;
+    margin-bottom: 30px;
+    min-height: 15px;
+    font-size: 12px;
+    line-height: 14.52px;
   }
-
-  @media screen and (max-width: 480px) {
-    .not-found__title {
-      margin-top: 329px;
-      font-size: 80px;
-      line-height: 96.82px;
-    }
-
-    .not-found__text {
-      margin-top: 10px;
-      font-size: 12px;
-      line-height: 14.52px;
-    }
-
-    .not-found__button {
-      margin-top: 284px;
-      margin-bottom: 30px;
-      min-height: 15px;
-      font-size: 12px;
-      line-height: 14.52px;
-    }
-  }
+}

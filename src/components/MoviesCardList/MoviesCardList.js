@@ -14,7 +14,7 @@ function MoviesCardList(props) {
         ))}
       </ul>
       <div className="cards__button-container">
-        <button className="cards__button">
+        <button type='button' className="cards__button">
           Ещё
         </button>
       </div>

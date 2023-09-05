@@ -26,8 +26,8 @@ function App() {
     setMenuOpen(false);
   }
   return (
-    <div className="page">
-      <div className="page__content">
+    <main className="main">
+      <div className="main__content">
         <Routes>
           <Route
             path="/"
@@ -72,7 +72,7 @@ function App() {
             element={<NotFound />} />
         </Routes>
       </div>
-    </div>
+    </main>
   );
 }
 

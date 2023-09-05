@@ -17,6 +17,7 @@
             className="form__input"
             id="email-input"
             type="email"
+            placeholder="Укажите ваш email"
             required
         />
         <span className="form__input-error"></span>
@@ -28,6 +29,9 @@
             className="form__input"
             id="password-input"
             type="password"
+            placeholder="Укажите ваш пароль"
+            minLength="2"
+            maxLength="40"
             required
         />
         <span className="form__input-error"></span>

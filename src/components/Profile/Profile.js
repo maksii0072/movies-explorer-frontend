@@ -11,7 +11,7 @@ function Profile(props) {
         closePopups={closePopups} />
       <Header loggedIn={true} handleMenuClick={handleMenuClick} />
       <main className='profile__container'>
-        <h3 className="profile__title">Привет, Максим!</h3>
+        <h1 className="profile__title">Привет, Максим!</h1>
         <form id="form" className="profile__form" >
           <div className='profile__row'>
             <label className="profile__field">
@@ -25,6 +25,7 @@ function Profile(props) {
               minLength="2"
               maxLength="40"
               defaultValue='Максим'
+              placeholder="Укажите ваш имя"
               required
             />
             <span className="profile__input-error"></span>
@@ -40,6 +41,7 @@ function Profile(props) {
               id="email-input"
               type="email"
               defaultValue='test@yandex.ru'
+              placeholder="Укажите ваш email"
               required
             />
             <span className="profile__input-error"></span>

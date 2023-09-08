@@ -57,7 +57,7 @@
     color: #3DDC84;
   }
   
-  @media screen and (max-width: 1023px) {
+  @media screen and (max-width: 769px) {
     .footer {
       padding: 62px 34px 20px 26px;
     }
@@ -75,7 +75,7 @@
     }
   
     .footer__container {
-      margin-top: 30px;
+      margin-top: 7px;
       flex-direction: column;
       align-items: center;
     }
@@ -96,9 +96,13 @@
     }
 
     .footer__list {
+      padding: 0;
       flex-direction: column;
       align-items: center;
   
+    }
+    .footer__item {
+      margin-top: 10px;
     }
 
   }

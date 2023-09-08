@@ -3,6 +3,7 @@ import Form from '../Form/Form';
 
 function Register() {
   return (
+    <main >
     <Form
       title="Добро пожаловать!"
       buttonText="Зарегистрироваться"
@@ -50,6 +51,7 @@ function Register() {
       />
       <span className="form__input-error"></span>
     </Form>
+    </main>
   );
 }
 

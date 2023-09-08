@@ -80,7 +80,7 @@
   color: #8B8B8B;
 }
 
-@media screen and (max-width: 1023px) {
+@media screen and (max-width: 769px) {
   .about-project {
     padding: 81px 48px;
   }

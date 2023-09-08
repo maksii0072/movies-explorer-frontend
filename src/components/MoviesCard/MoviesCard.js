@@ -20,8 +20,10 @@ function MoviesCard(props) {
             <h2 className="card__text">33 слова о дизайне</h2>
             <p className="card__time">1ч 47м</p>
           </figcaption>
+          <div className="card__container-button">
           <button type="button" className="card__delete-button"></button>
           <button type="button" className={`card__like-button ${ isLiked ? "card__like-button_active" : ""}`} onClick={handleLikeClick}></button>
+          </div>
         </div>
       </li>
       <li className="card">
@@ -37,8 +39,10 @@ function MoviesCard(props) {
             <h2 className="card__text">Киноальманах «100 лет дизайна»</h2>
             <p className="card__time">1ч 3м</p>
           </figcaption>
+          <div className="card__container-button">
           <button type="button" className="card__delete-button"></button>
           <button type="button" className={`card__like-button ${ isLiked ? "card__like-button_active" : ""}`} onClick={handleLikeClick}></button>
+          </div>
         </div>
       </li>
       <li className="card">

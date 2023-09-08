@@ -2,6 +2,7 @@
 
     function FilterCheckbox() {
     return (
+        <main >
         <form className="filter">
         <input
             className="filter__checkbox"
@@ -10,6 +11,7 @@
         </input>
         <span className="filter__text">Короткометражки</span>
         </form>
+        </main>
     );
     }
 

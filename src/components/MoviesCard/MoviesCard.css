@@ -91,7 +91,7 @@ card {
     opacity: 0.6;
   }
 
-  @media screen and (max-width: 1023px) {
+  @media screen and (max-width: 769px) {
     /* .card__container {
       /* justify-content: flex-start; */
       /* padding: 0; */

@@ -33,7 +33,7 @@
   }
   
   .form__button-save {
-    margin-top: 160px;
+    margin-top: 72px;
     height: 45px;
     border: none;
     background-color: #4285F4;
@@ -122,7 +122,7 @@
     background-color: #4285F4;
   }
   
-  @media screen and (max-width: 1023px) {
+  @media screen and (max-width: 769px) {
     .form__container {
       padding-top: 232px;
       padding-bottom: 232px;
@@ -148,6 +148,7 @@
     .form__button-save {
       font-size: 12px;
       line-height: 15px;
+      margin-top: 160px;
     }
   
     .form__text {

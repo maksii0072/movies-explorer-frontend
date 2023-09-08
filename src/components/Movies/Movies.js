@@ -1,3 +1,4 @@
+import React from 'react';
 import './Movies.css';
 import Header from '../Header/Header';
 import SearchForm from '../SearchForm/SearchForm';
@@ -15,7 +16,7 @@ function Movies(props) {
       <Header
         loggedIn={true}
         handleMenuClick={handleMenuClick} />
-      <main>
+      <main >
         <SearchForm />
         <MoviesCardList
           isLiked={isLiked}

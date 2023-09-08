@@ -9,7 +9,7 @@
     padding: 0 70px;
     list-style: none;
     display: grid;
-    grid-template-columns: repeat(3, 364px);
+    grid-template-columns: repeat(3, 330px);
     gap: 37px 24px;
     justify-content: space-between;
   }
@@ -46,14 +46,16 @@
   
   @media screen and (max-width: 1180px) {
     .cards__list {
-      grid-template-columns: repeat(3, 270px);
+      grid-template-columns: repeat(2, 330px);
+
+
     }
   }
   
-  @media screen and (max-width: 1023px) {
+  @media screen and (max-width: 769px) {
     .cards__list {
-      padding: 40px 30px 30px;
-      grid-template-columns: repeat(2, 339px);
+      padding: 0px 30px 30px;
+      grid-template-columns: repeat(2, 250px);
       gap: 28px 30px;
       justify-content: center;
     }
@@ -65,9 +67,9 @@
   
   @media screen and (max-width: 576px) {
     .cards__list {
-      padding: 40px 10px 30px;
+      padding: 0px 10px 30px;
       grid-template-columns: repeat(1, 300px);
-      gap: 14px;
+      gap: 30px;
     }
   
     .cards__button {
@@ -75,7 +77,7 @@
     }
   
     .cards__button-container {
-      padding: 76px 0 80px;
+      padding: 27px 0 80px;
     }
   }
   

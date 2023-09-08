@@ -71,7 +71,7 @@
   border-radius: 10px;
 }
 
-@media screen and (max-width: 1023px) {
+@media screen and (max-width: 769px) {
   .about-me {
     padding: 82px 49px;
   }

@@ -4,7 +4,7 @@ import './NotFound.css';
 
 function NotFound() {
   return (
-    <main >
+    < >
       <section className="not-found">
         <h1 className="not-found__title">404</h1>
         <p className="not-found__text">Страница не найдена</p>
@@ -12,7 +12,7 @@ function NotFound() {
           Назад
         </Link>
       </section>
-    </main>
+    </>
   );
 }
 

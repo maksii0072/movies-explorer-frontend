@@ -71,9 +71,9 @@
   border-radius: 10px;
 }
 
-@media screen and (max-width: 769px) {
+@media screen and (max-width: 768px) {
   .about-me {
-    padding: 82px 49px;
+    padding: 90px 49px;
   }
 
   .about-me__content {
@@ -126,7 +126,7 @@
 
 @media screen and (max-width: 576px) {
   .about-me {
-    padding: 70px 14px;
+    padding: 47px 14px;
   }
 
   .about-me__title {
@@ -152,7 +152,7 @@
   }
 
   .about-me__link {
-    margin-top: 40px;
+    margin-top: 53px;
     font-size: 14px;
     line-height: 17px;
   }

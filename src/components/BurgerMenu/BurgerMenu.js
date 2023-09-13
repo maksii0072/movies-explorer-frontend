@@ -5,7 +5,8 @@ import account from '../../images/icon_account.svg';
 function BurgerMenu(props) {
   const { menuOpen, closePopups } = props;
   return (
-    <main >
+    <>
+
       <div className={`menu ${menuOpen ? "menu_opened" : ""}`}>
         <div className="menu__container">
           <button className="menu__close-icon" type="button" aria-label="закрыть" onClick={closePopups}></button>
@@ -34,7 +35,8 @@ function BurgerMenu(props) {
           </div>
         </div>
       </div>
-    </main>
+
+    </>
   );
 }
 

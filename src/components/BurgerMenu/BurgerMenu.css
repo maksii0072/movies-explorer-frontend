@@ -62,6 +62,8 @@
   .menu__item {
     list-style: none;
     margin-bottom: 28px;
+    color: #fff;
+
   }
 
   .menu__link {

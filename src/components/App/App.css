@@ -1,4 +1,4 @@
-.main {
+.page {
   box-sizing: border-box;
   background-color: #202020;
   min-height: 100vh;
@@ -6,7 +6,7 @@
   padding: 0;
 }
 
-.main__content {
+.page__content {
   max-width: 1280px;
   min-width: 300px;
   margin: 0 auto;

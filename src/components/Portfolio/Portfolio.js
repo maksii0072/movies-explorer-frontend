@@ -3,7 +3,7 @@
 
   function Portfolio() {
     return (
-      <main >
+      <>
       <section className="portfolio">
         <h3 className="portfolio__title">Портфолио</h3>
         <nav>
@@ -41,7 +41,7 @@
         </ul>
         </nav>
       </section>
-      </main>
+      </>
     );
   }
 

@@ -5,8 +5,9 @@ import './Login.css';
 
 function Login() {
   return (
-    <main >
+    <>
       <Form
+       className='form'
         title="Рады видеть!"
         buttonText="Войти"
         question="Еще не зарегистрированы?"
@@ -39,7 +40,7 @@ function Login() {
         />
         <span className="form__input-error"></span>
       </Form>
-    </main>
+    </>
   );
 }
 

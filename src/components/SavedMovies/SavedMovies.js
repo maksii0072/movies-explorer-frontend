@@ -9,7 +9,7 @@ import BurgerMenu from '../BurgerMenu/BurgerMenu';
 function SavedMovies(props) {
   const { menuOpen, closePopups, isLiked, handleMenuClick, handleLikeClick } = props;
   return (
-    <main >
+    < >
     <section className="movies">
       <BurgerMenu
         menuOpen={menuOpen}
@@ -25,7 +25,7 @@ function SavedMovies(props) {
       </main>
       <Footer />
     </section>
-    </main>
+    </>
   );
 }
 

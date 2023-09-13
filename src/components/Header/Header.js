@@ -14,7 +14,6 @@ function Header(props) {
           <Link to="/" className="logo">
             <img src={logo} alt="логотип" />
           </Link>
-          <main>
             <nav className="header__button-container">
               <Link to="/signup" className="header__button">
                 Регистрация
@@ -23,14 +22,12 @@ function Header(props) {
                 Войти
               </Link>
             </nav>
-          </main>
         </header>
       ) : (
         <header className="header" id="header">
           <Link to="/" className="logo">
             <img src={logo} alt="логотип" />
           </Link>
-          <main>
             <nav>
               <ul className="header__button-container_films">
                 <li>
@@ -62,7 +59,6 @@ function Header(props) {
                 </li>
               </ul>
             </nav>
-          </main>
         </header>
       )}
     </>

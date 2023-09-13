@@ -80,9 +80,9 @@
   color: #8B8B8B;
 }
 
-@media screen and (max-width: 769px) {
+@media screen and (max-width: 768px) {
   .about-project {
-    padding: 81px 48px;
+    padding: 96px 48px;
   }
 
   .about-project__container {
@@ -109,7 +109,7 @@
 
 @media screen and (max-width: 576px) {
   .about-project {
-    padding: 56px 18px;
+    padding: 41px 18px;
   }
 
   .about-project__container {
@@ -120,7 +120,7 @@
     display: flex;
     flex-direction: column;
     margin-top: 60px;
-    gap: 56px 0;
+    gap: 47px 0;
     margin-bottom: 60px;
   }
 

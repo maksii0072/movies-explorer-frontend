@@ -1,10 +1,13 @@
 import './Profile.css';
+import { NavLink } from "react-router-dom";
+
 import Header from '../Header/Header';
 import BurgerMenu from '../BurgerMenu/BurgerMenu';
 
 function Profile(props) {
   const { handleMenuClick, menuOpen, closePopups } = props;
   return (
+    <>
     <section className="profile">
       <BurgerMenu
         menuOpen={menuOpen}
@@ -52,12 +55,15 @@ function Profile(props) {
           >
             Редактировать
           </button>
-          <button type="button" className="profile__button-logout profile__button">
+          {/* <button type="button" className="profile__button-logout profile__button  ">
             Выйти из аккаунта
-          </button>
+          </button> */}
+         <NavLink className="profile__button-logout profile__button " to="/">Выйти из аккаунта</NavLink>
         </form>
+
         </main>
     </section>
+    </>
   );
 }
 

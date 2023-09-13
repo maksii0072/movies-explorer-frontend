@@ -11,7 +11,7 @@ function Form({
   link,
 }) {
   return (
-    <main >
+    < >
     <div className="form__container">
       <Link to="/" className="form__logo">
         <img src={logo} alt="логотип" />
@@ -30,7 +30,7 @@ function Form({
         </Link>
       </p>
     </div>
-    </main>
+    </>
   );
 }
 

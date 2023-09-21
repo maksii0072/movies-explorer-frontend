@@ -59,6 +59,11 @@
   cursor:pointer;
 
 }
+.profile__input:focus {
+  border-bottom: 1px solid #4285F4;
+
+}
+
 
 
 .profile__input-error {

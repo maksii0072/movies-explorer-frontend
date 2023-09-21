@@ -45,6 +45,10 @@ card {
     max-width: 250px;
   }
 
+  .card__container-button {
+    display: flex;
+  }
+
   .card__like-button {
     /* position: absolute;
     top: 19px;
@@ -65,9 +69,9 @@ card {
 
   .card__like-button_active {
     background-image: url(../../images/like_active.svg);
-    position: absolute;
+    /* position: absolute;
     top: 19px;
-    right: 24px;
+    right: 24px; */
     padding: 0;
     border: none;
     background-color: transparent;
@@ -92,12 +96,19 @@ card {
   }
 
   @media screen and (max-width: 769px) {
-    /* .card__container {
-      /* justify-content: flex-start; */
-      /* padding: 0; */
+  .card__container { 
+       padding: 0 4px; 
 
-    /* }  */
-
+     }  
+     .card__info-container {
+      padding: 11px 0px;
+     }
+     .card__text {
+      padding: 0;
+     }
+    .card__time {
+      padding: 34px 0 16px 0;
+    }
     .card__image {
       height: 190px;
     }

@@ -1,7 +1,7 @@
 import './MoviesCard.css';
-import image1 from '../../images/pic_1.jpg'
-import image2 from '../../images/pic_2.jpg'
-import image3 from '../../images/pic_3.jpg'
+import image1 from '../../images/pic_1.jpg';
+import image2 from '../../images/pic_2.jpg';
+import image3 from '../../images/pic_3.jpg';
 
 function MoviesCard(props) {
   const { trailerLink, handleLikeClick, isLiked } = props;
@@ -34,7 +34,7 @@ function MoviesCard(props) {
             src={image2}
           />
         </a>
-        <div className="card__container">
+        <div class="card__container">
           <figcaption className="card__info-container">
             <h2 className="card__text">Киноальманах «100 лет дизайна»</h2>
             <p className="card__time">1ч 3м</p>

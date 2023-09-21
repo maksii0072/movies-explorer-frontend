@@ -17,7 +17,9 @@ function AboutMe() {
               href="https://github.com/maksii0072"
               className="about-me__link"
               target="_blank"
-              rel="noreferrer">
+              rel="noreferrer"
+              title="Профиль на GitHub"
+              >
               Github
             </a>
           </div>

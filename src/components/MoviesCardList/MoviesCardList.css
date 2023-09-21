@@ -51,12 +51,20 @@
 
     }
   }
+  @media screen and (max-width: 856px) {
+    .cards__list {
+      grid-template-columns: repeat(2, 306px);
+
+
+
+    }
+  }
   
   @media screen and (max-width: 769px) {
     .cards__list {
       padding: 0px 30px 30px;
       grid-template-columns: repeat(2, 1fr);
-      gap: 28px 30px;
+      gap: 4px 30px;
       justify-content: center;
     }
   

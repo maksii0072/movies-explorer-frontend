@@ -8,12 +8,13 @@ import burger from '../../images/icon_burger.svg';
 function Header(props) {
   const { handleMenuClick, loggedIn } = props;
   return (
-    <>
-      {!loggedIn ? (
-        <header className="header" id="header">
-          <Link to="/" className="logo">
-            <img src={logo} alt="логотип" />
-          </Link>
+    <header>
+      <nav>
+        {!loggedIn ? (
+          <section className="header" id="header">
+            <Link to="/" className="logo">
+              <img src={logo} alt="логотип" />
+            </Link>
             <nav className="header__button-container">
               <Link to="/signup" className="header__button">
                 Регистрация
@@ -22,25 +23,21 @@ function Header(props) {
                 Войти
               </Link>
             </nav>
-        </header>
-      ) : (
-        <header className="header" id="header">
-          <Link to="/" className="logo">
-            <img src={logo} alt="логотип" />
-          </Link>
+          </section>
+        ) : (
+          <section className="header" id="header">
+            <Link to="/" className="logo">
+              <img src={logo} alt="логотип" />
+            </Link>
             <nav>
-              <ul className="header__button-container_films">
+              <ul className="header__button-container-films">
                 <li>
-                  <NavLink
-                    to="/movies"
-                    className="header__button">
+                  <NavLink to="/movies" className="header__button">
                     Фильмы
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink
-                    to="/saved-movies"
-                    className="header__button">
+                  <NavLink to="/saved-movies" className="header__button">
                     Сохранённые фильмы
                   </NavLink>
                 </li>
@@ -59,9 +56,10 @@ function Header(props) {
                 </li>
               </ul>
             </nav>
-        </header>
-      )}
-    </>
+          </section>
+        )}
+      </nav>
+    </header>
   );
 }
 

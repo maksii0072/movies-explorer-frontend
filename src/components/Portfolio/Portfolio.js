@@ -10,7 +10,7 @@
         <ul  className="portfolio__list">
           <li>
             <a
-              href="#"
+              href="https://github.com/maksii0072/how-to-learn"
               className="portfolio__link portfolio__link-border"
               target="_blank"
               rel="noreferrer">
@@ -20,7 +20,7 @@
           </li>
           <li>
             <a
-              href="#"
+              href="https://github.com/maksii0072/russian-travel"
               className="portfolio__link portfolio__link-border"
               target="_blank"
               rel="noreferrer">
@@ -30,7 +30,7 @@
           </li>
           <li>
             <a
-              href="https://github.com/maksii0072/express-mesto-gha.git"
+              href="https://github.com/maksii0072/express-mesto-gha"
               className="portfolio__link"
               target="_blank"
               rel="noreferrer">

@@ -6,6 +6,10 @@
   position: relative;
   justify-content: space-between;
 }
+.logo:hover {
+  opacity: .8;
+
+}
 
 .header__button-container {
   margin-left: auto;
@@ -15,7 +19,7 @@
   list-style: none;
 }
 
-.header__button-container_films {
+.header__button-container-films {
   padding-left: 100px;
   display: flex;
   gap: 16px;
@@ -111,7 +115,7 @@
     padding: 0 30px;
   }
 
-  .header__button-container_films {
+  .header__button-container-films {
     display: none;
   }
 

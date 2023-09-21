@@ -1,4 +1,4 @@
-.form__container {
+.form {
     padding: 70px 0;
     margin: 0 auto;
     display: flex;
@@ -25,7 +25,7 @@
     line-height: 29px;
   }
   
-  .form {
+  .form__save{
     display: flex;
     flex-direction: column;
     min-height: 380px;
@@ -123,14 +123,14 @@
   }
   
   @media screen and (max-width: 769px) {
-    .form__container {
+    .form {
       padding-top: 232px;
       padding-bottom: 232px;
     }
   }
 
   @media screen and (max-width: 576px) {
-    .form__container {
+    .form {
       padding: 56px 30px 30px 30px;
       align-items: center;
     }
@@ -141,7 +141,7 @@
       text-align: center;
     }
   
-    .form {
+    .form__save {
       min-height: 468px;
     }
   

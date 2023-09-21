@@ -25,6 +25,10 @@
   cursor: pointer;
   appearance: none;
 }
+.filter__checkbox:hover {
+  background-color: #e1dcdc;
+
+}
 
 .filter__checkbox::after {
   height: 8px;
@@ -54,6 +58,7 @@
 .filter__checkbox:checked {
   background-color: #3DDC84;
 }
+
 
 
 @media screen and (max-width: 576px) {

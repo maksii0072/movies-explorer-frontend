@@ -2,7 +2,7 @@
 
     function FilterCheckbox() {
     return (
-        < >
+        <>
         <form className="filter">
         <input
             className="filter__checkbox"

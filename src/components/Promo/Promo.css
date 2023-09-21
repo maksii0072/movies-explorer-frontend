@@ -32,6 +32,14 @@
   align-self: flex-end;
 }
 
+@media screen and (max-width: 1280px) {
+  .promo__container {
+    min-height: 834px;
+    width: 100%;
+    align-items:center;
+  }
+  }
+
 @media screen and (max-width: 1023px) {
   .promo {
     padding: 20px 20px 0 20px;
@@ -62,8 +70,12 @@
     min-height: 630px;
     /* overflow: hidden; */
   }
+  .promo__container-text {
+    display: flex;
+    justify-content: center;
+  }
   .promo__title {
-    /* max-width: 538px; */
+    max-width: 538px;
     font-size: 40px;
     line-height: 55px;
     /* margin: 0; */
@@ -82,9 +94,12 @@
 }
 @media screen and (max-width: 576px) {
 .promo__title {
-  padding: 171px 0px 60px 0px;
+  padding: 181px 0px 60px 0px;
   max-width: 300px;
   font-size: 30px;
   line-height: 39px
+}
+.promo {
+  padding: 0 14px 0 14px;
 }
 }

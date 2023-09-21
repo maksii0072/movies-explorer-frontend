@@ -59,11 +59,15 @@
   background-color: #3DDC84;
 }
 
-
+@media screen and (max-width: 769px) {
+  .filter {
+    padding-top: 41px;
+  }
+}
 
 @media screen and (max-width: 576px) {
   .filter {
-    padding-top: 45px;
+    padding-top: 74px;
   }
 
   .filter__text {

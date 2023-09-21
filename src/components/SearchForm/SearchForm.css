@@ -71,13 +71,13 @@
 
 @media screen and (max-width: 769px) {
   .search {
-    padding: 80px 30px;
+    padding:57px 30px 94px 30px;
   }
 }
 
 @media screen and (max-width: 576px) {
   .search {
-    padding: 61px 14px 50px;
+    padding: 77px 14px 49px;
   }
 
   .search__input {

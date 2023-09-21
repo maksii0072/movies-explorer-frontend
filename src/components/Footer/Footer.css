@@ -59,7 +59,7 @@
   
   @media screen and (max-width: 769px) {
     .footer {
-      padding: 64px 31px 19px 29px;
+      padding: 75px 31px 19px 29px;
     }
   }
   
@@ -85,7 +85,7 @@
       line-height: 14.52px;
       color: #8B8B8B;
       order: 10;
-      margin-top:30px;
+      margin-top:8px;
     }
   
     .footer__link {

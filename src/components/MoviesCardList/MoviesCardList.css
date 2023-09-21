@@ -77,7 +77,7 @@
     .cards__list {
       padding: 0px 10px 30px;
       grid-template-columns: repeat(1, 300px);
-      gap: 30px;
+      gap: 8px;
     }
   
     .cards__button {

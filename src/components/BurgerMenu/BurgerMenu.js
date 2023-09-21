@@ -4,11 +4,11 @@ import account from '../../images/icon_account.svg';
 
 function BurgerMenu(props) {
   const { menuOpen, closePopups } = props;
-  const menuClassName = `menu ${menuOpen ? "menu_opened" : ""}`;
+  const menuClassName = `menuElement ${menuOpen ? "menu_opened" : ""}`;
 
   return (
     <div className={menuClassName}>
-      <div className='menu__container'>
+      <div className='menu'>
         <button className="menu__close-icon" type="button" aria-label="закрыть" onClick={closePopups}></button>
         <ul className="menu__list">
           <li className="menu__item">

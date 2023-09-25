@@ -68,7 +68,6 @@
   .menu__item {
     list-style: none;
     margin-bottom: 28px;
-    color: #fff;
 
   }
 
@@ -111,7 +110,7 @@
   .menu__footer-box-account-image:hover {
     cursor: pointer;
     color: #3DDC84;
-  }  
+  }
 
   .menu__footer-box-account-button {
     display: flex;

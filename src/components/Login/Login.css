@@ -1,0 +1,11 @@
+.form__input-margin {
+  margin-bottom: 97px;
+}
+
+@media screen and (max-width: 320px) {
+
+  .form__input-margin {
+    margin-bottom: 98px;
+  }
+  
+}

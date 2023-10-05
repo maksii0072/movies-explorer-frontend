@@ -1,0 +1,158 @@
+.menuElement {
+  opacity: 0;
+}
+
+.menu {
+  display: none;
+}
+.menu__close-icon:hover {
+  opacity: .8;
+  cursor:pointer;
+ }
+
+@media screen and (max-width: 769px) {
+  .menuElement {
+    background-color: rgba(0, 0, 0, 0.3);
+    width: 100%;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    z-index: 3;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: transform 0.5s;
+  }
+
+  .menu_opened {
+    opacity: 1;
+    transform: translateX(0);
+    transition: transform 0.5s;
+  }
+
+  .menu {
+    width: 530px;
+    height: 100%;
+    background-color: #202020;
+    position: fixed;
+    right: 0;
+    box-sizing: border-box;
+    padding: 0 0 90px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .menu__close-icon {
+    background-image: url(../../images/icon_close.svg);
+    border: none;
+    width: 24px;
+    height: 24px;
+    background-color: transparent;
+    position: absolute;
+    top: 21px;
+    right: 31px;
+    cursor: pointer;
+  }
+
+
+
+  .menu__list {
+    padding: 0;
+    margin: 159px 0 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .menu__item {
+    list-style: none;
+    margin-bottom: 28px;
+    color: #fff;
+
+  }
+
+  .menu__link {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 15.78px;
+    text-align: center;
+    margin: 0 90px;
+    cursor:pointer;
+  }
+
+  .menu__link:hover {
+    opacity: 0.8;
+    color: #3DDC84;
+  }
+
+  .menu__link_active {
+    padding-bottom: 4px;
+    border-bottom: 2px solid #fff;
+  }
+
+  .menu__footer-box {
+    display: flex;
+    align-items: center;
+
+  }
+
+  .menu__footer-box-account-image {
+    width: 12px;
+    height: 12px;
+    padding: 9.7px 9.8px 9.6px 9.8px;
+    background-color: #313131;
+    width: 10.38px;
+    height: 10.67px;
+    border-radius: 6px;
+  }
+  .menu__footer-box-account-image:hover {
+    cursor: pointer;
+    color: #3DDC84;
+  }  
+
+  .menu__footer-box-account-button {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+    color: #fff;
+    text-decoration: none;
+    width: 70px;
+    height: 30px;
+    background: transparent;
+    text-decoration: none;
+  }
+
+  .menu__footer-box-account-button:hover {
+    cursor: pointer;
+    color: #3DDC84;
+  }
+
+}
+
+@media screen and (max-width: 576px) {
+  .menu {
+    width: 320px;
+  }
+
+  .menu__link {
+    margin: 0 10px;
+  }
+
+  .menu__list {
+    margin: 149px 0 0 0;
+  }
+
+  .menu__close-icon {
+    right: 20px;
+    top: 13px;
+  }
+
+
+
+}

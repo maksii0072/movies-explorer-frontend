@@ -5,3 +5,7 @@
 
 ## Cсылка на пул-реквест
 [https://github.com/maksii0072/movies-explorer-frontend/pull/2]
+
+
+## Ссылка на страницу
+[https://movies-choice.nomoreparties.co/]

@@ -6,10 +6,6 @@
   position: relative;
   justify-content: space-between;
 }
-.logo:hover {
-  opacity: .8;
-
-}
 
 .header__button-container {
   margin-left: auto;
@@ -19,7 +15,7 @@
   list-style: none;
 }
 
-.header__button-container-films {
+.header__button-container_films {
   padding-left: 100px;
   display: flex;
   gap: 16px;
@@ -36,7 +32,6 @@
   justify-content: center;
   color: #FFF;
   text-decoration: none;
-
 }
 
 .header__button_active {
@@ -101,8 +96,6 @@
   border: none;
   justify-self: center;
   border-radius: 3px;
-
-
 }
 
 .header__burger-button:hover {
@@ -110,12 +103,12 @@
   cursor: pointer;
 }
 
-@media screen and (max-width: 769px) {
+@media screen and (max-width: 1023px) {
   .header {
     padding: 0 30px;
   }
 
-  .header__button-container-films {
+  .header__button-container_films {
     display: none;
   }
 
@@ -147,10 +140,6 @@
   .header__burger-button {
     width: 40px;
     height: 43px;
-  }
-  .header__button-green {
-    min-width: 56px;
-
   }
 
   .header__button-black {

@@ -1,3 +1,4 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
 import './Form.css';
 import logo from '../../images/logo.svg';
@@ -14,14 +15,13 @@ function Form({
   isLoading,
 }) {
   return (
-    <>
-    <div className="form">
-      <Link to="/" className="form__logo">
+    <div class="form__container">
+      <Link to="/" class="form__logo">
         <img src={logo} alt="логотип" />
       </Link>
-      <h1 className="form__title">{title}</h1>
-      <form className="form__save" id="form" onSubmit={onSubmit} noValidate>
-      {children}
+      <h3 class="form__title">{title}</h3>
+      <form class="form" id="form" onSubmit={onSubmit} noValidate>
+        {children}
         <button type="submit"
           disabled={isDisabled ? true : false}
           class={isDisabled || isLoading
@@ -31,14 +31,13 @@ function Form({
           {buttonText}
         </button>
       </form>
-      <p className="form__text">
+      <p class="form__text">
         {question}
-        <Link to={link} className="form__link">
+        <Link to={link} class="form__link">
           {linkText}
         </Link>
       </p>
     </div>
-    </>
   );
 }
 

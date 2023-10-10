@@ -9,5 +9,5 @@ export function getCards() {
       'Content-Type': 'application/json',
     },
   })
-  .then(checkResponse)
+  .then(checkResponse);
 }

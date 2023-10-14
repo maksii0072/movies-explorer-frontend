@@ -1,17 +1,13 @@
-.menuElement {
+.menu {
   opacity: 0;
 }
 
-.menu {
+.menu__container {
   display: none;
 }
-.menu__close-icon:hover {
-  opacity: .8;
-  cursor:pointer;
- }
 
-@media screen and (max-width: 769px) {
-  .menuElement {
+@media screen and (max-width: 1023px) {
+  .menu {
     background-color: rgba(0, 0, 0, 0.3);
     width: 100%;
     height: 100%;
@@ -29,7 +25,7 @@
     transition: transform 0.5s;
   }
 
-  .menu {
+  .menu__container {
     width: 530px;
     height: 100%;
     background-color: #202020;
@@ -50,12 +46,10 @@
     height: 24px;
     background-color: transparent;
     position: absolute;
-    top: 21px;
-    right: 31px;
+    top: 30px;
+    right: 30px;
     cursor: pointer;
   }
-
-
 
   .menu__list {
     padding: 0;
@@ -68,7 +62,6 @@
   .menu__item {
     list-style: none;
     margin-bottom: 28px;
-
   }
 
   .menu__link {
@@ -76,10 +69,9 @@
     color: #fff;
     font-weight: 500;
     font-size: 18px;
-    line-height: 15.78px;
+    line-height: 21.78px;
     text-align: center;
     margin: 0 90px;
-    cursor:pointer;
   }
 
   .menu__link:hover {
@@ -91,51 +83,10 @@
     padding-bottom: 4px;
     border-bottom: 2px solid #fff;
   }
-
-  .menu__footer-box {
-    display: flex;
-    align-items: center;
-
-  }
-
-  .menu__footer-box-account-image {
-    width: 12px;
-    height: 12px;
-    padding: 9.7px 9.8px 9.6px 9.8px;
-    background-color: #313131;
-    width: 10.38px;
-    height: 10.67px;
-    border-radius: 6px;
-  }
-  .menu__footer-box-account-image:hover {
-    cursor: pointer;
-    color: #3DDC84;
-  }
-
-  .menu__footer-box-account-button {
-    display: flex;
-    align-items: center;
-    gap: 13px;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 16px;
-    color: #fff;
-    text-decoration: none;
-    width: 70px;
-    height: 30px;
-    background: transparent;
-    text-decoration: none;
-  }
-
-  .menu__footer-box-account-button:hover {
-    cursor: pointer;
-    color: #3DDC84;
-  }
-
 }
 
 @media screen and (max-width: 576px) {
-  .menu {
+  .menu__container {
     width: 320px;
   }
 
@@ -144,14 +95,10 @@
   }
 
   .menu__list {
-    margin: 149px 0 0 0;
+    margin: 144px 0 0 0;
   }
 
   .menu__close-icon {
     right: 20px;
-    top: 13px;
   }
-
-
-
 }

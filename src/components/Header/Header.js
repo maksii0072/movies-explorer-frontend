@@ -53,7 +53,7 @@ function Header({ handleMenuClick, loggedIn }) {
                   Аккаунт
                   <img src={account} alt="аккаунт" className='header__account-image' />
                 </Link>
-                <button className="header__burger-button" onClick={handleMenuClick}>
+                <button  type='button' className="header__burger-button" onClick={handleMenuClick}>
                   <img src={burger} alt="бургер-меню" />
                 </button>
               </li>

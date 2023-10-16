@@ -47,6 +47,7 @@ card {
 
   .card__container-button {
     display: flex;
+    align-items:center;
   }
 
   .card__like-button {
@@ -88,6 +89,8 @@ card {
     background-position: center;
     background-repeat: no-repeat;
     background-color: transparent;
+    background-image: url(../../images/delete_button.svg);
+    border-radius:50%
   }
 
   .card__delete-button:hover {
@@ -96,10 +99,10 @@ card {
   }
 
   @media screen and (max-width: 769px) {
-  .card__container { 
-       padding: 0 4px; 
+  .card__container {
+       padding: 0 4px;
 
-     }  
+     }
      .card__info-container {
       padding: 11px 0px;
      }

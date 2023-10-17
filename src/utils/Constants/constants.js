@@ -1,5 +1,5 @@
-export const DESKTOP_VERSION = 3;
-export const TABLET_VERSION = 2;
+export const DESKTOP_VERSION = 4;
+export const TABLET_VERSION = 3;
 export const MOBILE_VERSION = 2;
 export const DESKTOP = 1180;
 export const TABLET = 768;

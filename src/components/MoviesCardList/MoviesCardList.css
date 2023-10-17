@@ -9,7 +9,7 @@
     padding: 0 70px;
     list-style: none;
     display: grid;
-    grid-template-columns: repeat(3, 330px);
+    grid-template-columns: repeat(4, 1fr);
     gap: 37px 24px;
     justify-content: space-between;
   }
@@ -46,7 +46,7 @@
 
   @media screen and (max-width: 1180px) {
     .cards__list {
-      grid-template-columns: repeat(2, 330px);
+      grid-template-columns: repeat(3, 1fr);
 
 
     }

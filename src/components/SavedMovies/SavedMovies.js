@@ -15,16 +15,18 @@ function SavedMovies({ menuOpen, closePopups, loggedIn, handleMenuClick, handleC
 
   function handleSearchMovies(query) {
     setSearchQuery(query);
+    const moviesList = filterMovies(savedMovies, query);
+    setFilteredMovies(isShortMovies ? durationFilter(moviesList) : moviesList);
   }
+
 
   function handleShortMovies() {
     setIsShortMovies(!isShortMovies);
+    const moviesList = filterMovies(savedMovies, searchQuery);
+    setFilteredMovies(!isShortMovies ? durationFilter(moviesList) : moviesList);
   }
 
-  useEffect(() => {
-    const moviesList = filterMovies(savedMovies, searchQuery);
-    setFilteredMovies(isShortMovies ? durationFilter(moviesList) : moviesList);
-  }, [savedMovies, isShortMovies, searchQuery]);
+
 
   useEffect(() => {
     if (filteredMovies.length === 0) {

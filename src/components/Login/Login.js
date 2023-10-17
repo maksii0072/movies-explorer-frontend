@@ -1,7 +1,7 @@
 import '../Form/Form.css';
 import Form from '../Form/Form';
 import useForm from '../../hooks/useForm';
-import { EMAIL_REGEX } from '../../utils/constants';
+import { EMAIL_REGEX } from '../../utils/Constants/constants';
 
 function Login({ onLogin, isLoading }) {
   const { enteredValues, errors, handleChange, isFormValid } = useForm();

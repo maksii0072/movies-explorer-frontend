@@ -5,8 +5,8 @@ import Header from '../Header/Header';
 import BurgerMenu from '../BurgerMenu/BurgerMenu';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import useForm from '../../hooks/useForm';
-import { USER_REGEX } from '../../utils/constants';
-import { EMAIL_REGEX } from '../../utils/constants';
+import { USER_REGEX } from '../../utils/Constants/constants';
+import { EMAIL_REGEX } from '../../utils/Constants/constants';
 
 function Profile({
   handleMenuClick,

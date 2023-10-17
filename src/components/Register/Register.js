@@ -2,7 +2,7 @@ import React from 'react';
 import '../Form/Form.css';
 import Form from '../Form/Form';
 import useForm from '../../hooks/useForm';
-import { EMAIL_REGEX, USER_REGEX } from '../../utils/constants';
+import { EMAIL_REGEX, USER_REGEX } from '../../utils/Constants/constants';
 
 function Register({ onRegistr, isLoading }) {
   const { enteredValues, errors, handleChange, isFormValid } = useForm();

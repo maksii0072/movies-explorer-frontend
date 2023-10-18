@@ -24,14 +24,24 @@ function App() {
   const [InfoTooltipPopup, setInfoToolTipPopup] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-
+  const [likedMovies, setLikedMovies] = useState([]);
   useEffect(() => {
-    // загрузка карточек с сервера
     if (loggedIn) {
+      // Загрузите сохраненные карточки с сервера
       api
         .getSaveCards()
         .then((data) => {
           setSavedMovies(data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+
+      // Загрузите статусы лайков для карточек пользователя
+      api
+        .getLikedMovies()
+        .then((likedData) => {
+          setLikedMovies(likedData);
         })
         .catch((err) => {
           console.log(err);
@@ -94,7 +104,7 @@ function App() {
       .login({ email, password })
       .then((userData) => {
         setLoggedIn(true);
-        setCurrentUser({ email: userData.email, name: userData.name }); 
+        setCurrentUser({ email: userData.email, name: userData.name });
         navigate("/movies", { replace: true });
       })
       .catch((err) => {
@@ -166,6 +176,7 @@ function App() {
         .postSaveCard(card)
         .then((newMovie) => {
           setSavedMovies([newMovie, ...savedMovies]);
+          setLikedMovies([...likedMovies, newMovie._id]);
           setSaved(true);
         })
         .catch((err) => {
@@ -238,6 +249,7 @@ function App() {
                     isLoading={isLoading}
                     handleLikeClick={handleLikeClick}
                     savedMovies={savedMovies}
+                    likedMovies={likedMovies} 
                   />
                 }
               />

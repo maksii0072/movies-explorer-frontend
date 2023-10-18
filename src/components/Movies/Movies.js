@@ -15,7 +15,8 @@ function Movies({
   handleLikeClick,
   loggedIn,
   handleCardDelete,
-  savedMovies }) {
+  savedMovies,
+  likedMovies }) {
   const [initialMovies, setInitialMovies] = useState([]);
   const [filteredMovies, setFilteredMovies] = useState([]);
   const [isShortMovies, setIsShortMovies] = useState(false);
@@ -29,6 +30,11 @@ function Movies({
     setFilteredMovies(short ? durationFilter(moviesList) : moviesList);
     localStorage.setItem('movies', JSON.stringify(moviesList));
     localStorage.setItem('allMovies', JSON.stringify(movies));
+
+    const updatedLikedMovies = likedMovies.filter((likedMovie) =>
+    moviesList.some((movie) => movie.id === likedMovie.id)
+  );
+  likedMovies(updatedLikedMovies);
   }
 
   function handleShortMovies() {
@@ -119,6 +125,7 @@ function Movies({
           handleLikeClick={handleLikeClick}
           handleCardDelete={handleCardDelete}
           savedMovies={savedMovies}
+          likedMovies={likedMovies}
           cards={filteredMovies}
           isSavedFilms={false}
           isLoading={isLoading}

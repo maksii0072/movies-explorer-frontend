@@ -24,24 +24,14 @@ function App() {
   const [InfoTooltipPopup, setInfoToolTipPopup] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  const [likedMovies, setLikedMovies] = useState([]);
+
   useEffect(() => {
+    // загрузка карточек с сервера
     if (loggedIn) {
-      // Загрузите сохраненные карточки с сервера
       api
         .getSaveCards()
         .then((data) => {
           setSavedMovies(data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-
-      // Загрузите статусы лайков для карточек пользователя
-      api
-        .getLikedMovies()
-        .then((likedData) => {
-          setLikedMovies(likedData);
         })
         .catch((err) => {
           console.log(err);
@@ -138,6 +128,36 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const loadSavedMovies = () => {
+    api
+      .getSaveCards()
+      .then((data) => {
+        setSavedMovies(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    // Проверка токена и авторизация пользователя
+    setIsLoading(true);
+    api
+      .getUserInfo()
+      .then((res) => {
+        setLoggedIn(true);
+        setCurrentUser(res);
+        loadSavedMovies(); // Загрузка сохраненных карточек пользователя после успешной авторизации
+        navigate(location.pathname, { replace: true });
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, []);
+
   function handleUpdateUser(newUserInfo) {
     setIsLoading(true);
     api
@@ -170,21 +190,18 @@ function App() {
       });
   }
 
-  function handleLikeClick(card, saved, setSaved) {
-    if (!saved)
-      api
-        .postSaveCard(card)
-        .then((newMovie) => {
-          setSavedMovies([newMovie, ...savedMovies]);
-          setLikedMovies([...likedMovies, newMovie._id]);
-          setSaved(true);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-  }
+  const handleLikeClick = (card) => {
+    api
+      .postSaveCard(card)
+      .then((newMovie) => {
+        setSavedMovies([newMovie, ...savedMovies]);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
-  function handleCardDelete(movie, setSaved) {
+  const handleCardDelete = (movie) => {
     const savedMovie = savedMovies.find(
       (card) => card.movieId === movie.id || card.movieId === movie.movieId
     );
@@ -194,12 +211,11 @@ function App() {
         setSavedMovies((state) =>
           state.filter((item) => item._id !== savedMovie._id)
         );
-        setSaved(false);
       })
       .catch((err) => {
         console.log(err);
       });
-  }
+  };
 
   return (
     <div className="page">
@@ -249,7 +265,6 @@ function App() {
                     isLoading={isLoading}
                     handleLikeClick={handleLikeClick}
                     savedMovies={savedMovies}
-                    likedMovies={likedMovies} 
                   />
                 }
               />

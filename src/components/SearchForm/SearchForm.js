@@ -6,8 +6,6 @@ import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 function SearchForm({ handleSearchMovies, onFilter, isShortMovies }) {
   const [queryError, setQueryError] = useState(false);
   const [movieQuery, setMovieQuery] = useState('');
-  const [searchResults, setSearchResults] = useState([]); // Состояние для результатов поиска
-  const [isChecked, setIsChecked] = useState(false); // Состояние для чекбокса
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -21,17 +19,13 @@ function SearchForm({ handleSearchMovies, onFilter, isShortMovies }) {
     setMovieQuery(e.target.value);
   }
 
-  function handleCheckboxChange(checked) {
-    setIsChecked(checked);
-  }
-
   function handleSubmit(e) {
     e.preventDefault();
     if (movieQuery.length === 0) {
       setQueryError(true);
     } else {
       setQueryError(false);
-      handleSearchMovies(movieQuery, isChecked);
+      handleSearchMovies(movieQuery);
     }
   }
 
@@ -45,11 +39,12 @@ function SearchForm({ handleSearchMovies, onFilter, isShortMovies }) {
           type="text"
           placeholder="Фильм"
           onChange={handleChangeQuery}
-          value={movieQuery}
-        />
+          value={movieQuery || ''}
+          >
+        </input>
         <button className="search__button" type="submit">Найти</button>
       </form>
-      <FilterCheckbox onFilter={onFilter} isShortMovies={isChecked} handleCheckboxChange={handleCheckboxChange} />
+      <FilterCheckbox onFilter={onFilter} isShortMovies={isShortMovies} />
       {queryError && <span className="search__form-error">Нужно ввести ключевое слово</span>}
       <span className="search__form-border"></span>
     </section>

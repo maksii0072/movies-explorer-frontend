@@ -14,7 +14,8 @@ function MoviesCardList({
   isReqError,
   isSavedFilms,
   savedMovies,
-  cards
+  cards,
+  userLikes
 }) {
 
   const [shownCards, setShownCards] = useState(0);
@@ -78,6 +79,7 @@ function MoviesCardList({
                     handleCardDelete={handleCardDelete}
                     isSavedFilms={isSavedFilms}
                     savedMovies={savedMovies}
+                    userLikes={userLikes}
                   />
                 ))}
               </ul>
@@ -94,6 +96,7 @@ function MoviesCardList({
                     handleCardDelete={handleCardDelete}
                     isSavedFilms={isSavedFilms}
                     savedMovies={savedMovies}
+                    userLikes={userLikes}
                   />
                 )) : ""}
               </ul>

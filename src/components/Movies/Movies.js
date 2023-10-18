@@ -15,8 +15,7 @@ function Movies({
   handleLikeClick,
   loggedIn,
   handleCardDelete,
-  savedMovies
-}) {
+  savedMovies }) {
   const [initialMovies, setInitialMovies] = useState([]);
   const [filteredMovies, setFilteredMovies] = useState([]);
   const [isShortMovies, setIsShortMovies] = useState(false);
@@ -24,62 +23,72 @@ function Movies({
   const [isReqError, setIsReqError] = useState(false);
   const [isNotFound, setIsNotFound] = useState(false);
 
-  // Функция для обработки нажатия на кнопку "Лайк"
-  function handleLike(movie) {
-    const updatedMovies = initialMovies.map((m) => {
-      if (m.id === movie.id) {
-        return {
-          ...m,
-          isLiked: !m.isLiked, // Инвертируем состояние лайка
-        };
+  function handleFilterMovies(movies, query, short) {
+    const moviesList = filterMovies(movies, query, short);
+    setInitialMovies(moviesList);
+    setFilteredMovies(short ? durationFilter(moviesList) : moviesList);
+    localStorage.setItem('movies', JSON.stringify(moviesList));
+    localStorage.setItem('allMovies', JSON.stringify(movies));
+  }
+
+  function handleShortMovies() {
+    setIsShortMovies(!isShortMovies);
+    if (!isShortMovies) {
+      if (durationFilter(initialMovies).length === 0) {
+        setFilteredMovies(durationFilter(initialMovies));
+      } else {
+        setFilteredMovies(durationFilter(initialMovies));
       }
-      return m;
-    });
-    setInitialMovies(updatedMovies);
-    // Сохраняем обновленное состояние в локальном хранилище
-    localStorage.setItem('movies', JSON.stringify(updatedMovies));
+    } else {
+      setFilteredMovies(initialMovies);
+    }
+    localStorage.setItem('shortMovies', !isShortMovies);
   }
 
-  // Функция для загрузки данных о фильмах
-  function loadMoviesFromApi() {
-    setIsLoading(true);
-    movies
-      .getCards()
-      .then((cardsData) => {
-        handleFilterMovies(cardsData, localStorage.getItem('movieSearch'), isShortMovies);
-        setIsReqError(false);
-      })
-      .catch((err) => {
-        setIsReqError(true);
-        console.log(err);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+  function handleSearchMovies(query) {
+    localStorage.setItem('movieSearch', query);
+    localStorage.setItem('shortMovies', isShortMovies);
+
+    if (localStorage.getItem('allMovies')) {
+      const movies = JSON.parse(localStorage.getItem('allMovies'));
+      handleFilterMovies(movies, query, isShortMovies);
+    } else {
+      setIsLoading(true);
+      movies.getCards()
+        .then((cardsData) => {
+          handleFilterMovies(cardsData, query, isShortMovies);
+          setIsReqError(false);
+        })
+        .catch((err) => {
+          setIsReqError(true);
+          console.log(err);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+    }
   }
 
-  // Загрузка данных при монтировании компонента
   useEffect(() => {
     if (localStorage.getItem('shortMovies') === 'true') {
       setIsShortMovies(true);
     } else {
       setIsShortMovies(false);
     }
+  }, []);
 
+  useEffect(() => {
     if (localStorage.getItem('movies')) {
-      const moviesData = JSON.parse(localStorage.getItem('movies'));
-      setInitialMovies(moviesData);
+      const movies = JSON.parse(localStorage.getItem('movies'));
+      setInitialMovies(movies);
       if (localStorage.getItem('shortMovies') === 'true') {
-        setFilteredMovies(durationFilter(moviesData));
+        setFilteredMovies(durationFilter(movies));
       } else {
-        setFilteredMovies(moviesData);
+        setFilteredMovies(movies);
       }
-    } else {
-      loadMoviesFromApi();
     }
   }, []);
 
-  // Обработка изменений в фильтрации
   useEffect(() => {
     if (localStorage.getItem('movieSearch')) {
       if (filteredMovies.length === 0) {
@@ -92,16 +101,20 @@ function Movies({
     }
   }, [filteredMovies]);
 
+
   return (
     <section className="movies">
-      <BurgerMenu menuOpen={menuOpen} closePopups={closePopups} />
-      <Header loggedIn={loggedIn} handleMenuClick={handleMenuClick} />
+      <BurgerMenu
+        menuOpen={menuOpen}
+        closePopups={closePopups} />
+      <Header
+        loggedIn={loggedIn}
+        handleMenuClick={handleMenuClick} />
       <main>
         <SearchForm
           handleSearchMovies={handleSearchMovies}
           onFilter={handleShortMovies}
-          isShortMovies={isShortMovies}
-        />
+          isShortMovies={isShortMovies} />
         <MoviesCardList
           handleLikeClick={handleLikeClick}
           handleCardDelete={handleCardDelete}

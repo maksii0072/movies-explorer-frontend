@@ -128,36 +128,6 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const loadSavedMovies = () => {
-    api
-      .getSaveCards()
-      .then((data) => {
-        setSavedMovies(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  useEffect(() => {
-    // Проверка токена и авторизация пользователя
-    setIsLoading(true);
-    api
-      .getUserInfo()
-      .then((res) => {
-        setLoggedIn(true);
-        setCurrentUser(res);
-        loadSavedMovies(); // Загрузка сохраненных карточек пользователя после успешной авторизации
-        navigate(location.pathname, { replace: true });
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  }, []);
-
   function handleUpdateUser(newUserInfo) {
     setIsLoading(true);
     api
@@ -190,18 +160,20 @@ function App() {
       });
   }
 
-  const handleLikeClick = (card) => {
-    api
-      .postSaveCard(card)
-      .then((newMovie) => {
-        setSavedMovies([newMovie, ...savedMovies]);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  function handleLikeClick(card, saved, setSaved) {
+    if (!saved)
+      api
+        .postSaveCard(card)
+        .then((newMovie) => {
+          setSavedMovies([newMovie, ...savedMovies]);
+          setSaved(true);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+  }
 
-  const handleCardDelete = (movie) => {
+  function handleCardDelete(movie, setSaved) {
     const savedMovie = savedMovies.find(
       (card) => card.movieId === movie.id || card.movieId === movie.movieId
     );
@@ -211,11 +183,12 @@ function App() {
         setSavedMovies((state) =>
           state.filter((item) => item._id !== savedMovie._id)
         );
+        setSaved(false);
       })
       .catch((err) => {
         console.log(err);
       });
-  };
+  }
 
   return (
     <div className="page">

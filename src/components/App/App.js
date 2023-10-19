@@ -90,12 +90,14 @@ function App() {
   //авторизация пользователя
   function handleLoginSubmit({ email, password }) {
     setIsLoading(true);
-    api
+    const userData = api
       .login({ email, password })
-      .then((userData) => {
-        setLoggedIn(true);
-        setCurrentUser({ email: userData.email, name: userData.name });
-        navigate("/movies", { replace: true });
+      .then(() => {
+        if (userData) {
+          setLoggedIn(true);
+          setCurrentUser({ email, password });
+          navigate("/movies", { replace: true });
+        }
       })
       .catch((err) => {
         console.log(err);

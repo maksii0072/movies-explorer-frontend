@@ -4,7 +4,7 @@ import './MoviesCardList.css';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import Preloader from '../Preloader/Preloader';
 import SearchError from '../SearchError/SearchError';
-import { DESKTOP_VERSION, TABLET_VERSION, MOBILE_VERSION, DESKTOP, TABLET } from '../../utils/constants';
+import { DESKTOP_VERSION, TABLET_VERSION, MOBILE_VERSION, DESKTOP, TABLET } from '../../utils/Constants/constants';
 
 function MoviesCardList({
   handleLikeClick,

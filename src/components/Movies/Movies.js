@@ -15,16 +15,13 @@ function Movies({
   handleLikeClick,
   loggedIn,
   handleCardDelete,
-  savedMovies,
-}) {
+  savedMovies }) {
   const [initialMovies, setInitialMovies] = useState([]);
   const [filteredMovies, setFilteredMovies] = useState([]);
-
   const [isShortMovies, setIsShortMovies] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isReqError, setIsReqError] = useState(false);
   const [isNotFound, setIsNotFound] = useState(false);
-  const [likedMovies, setLikedMovies] = useState([]);
 
   function handleFilterMovies(movies, query, short) {
     const moviesList = filterMovies(movies, query, short);
@@ -57,8 +54,7 @@ function Movies({
       handleFilterMovies(movies, query, isShortMovies);
     } else {
       setIsLoading(true);
-      movies
-        .getCards()
+      movies.getCards()
         .then((cardsData) => {
           handleFilterMovies(cardsData, query, isShortMovies);
           setIsReqError(false);
@@ -105,21 +101,20 @@ function Movies({
     }
   }, [filteredMovies]);
 
-  useEffect(() => {
-    const likedMovies = JSON.parse(localStorage.getItem('likedMovies')) || [];
-    setLikedMovies(likedMovies);
-  }, []);
 
   return (
     <section className="movies">
-      <BurgerMenu menuOpen={menuOpen} closePopups={closePopups} />
-      <Header loggedIn={loggedIn} handleMenuClick={handleMenuClick} />
+      <BurgerMenu
+        menuOpen={menuOpen}
+        closePopups={closePopups} />
+      <Header
+        loggedIn={loggedIn}
+        handleMenuClick={handleMenuClick} />
       <main>
         <SearchForm
           handleSearchMovies={handleSearchMovies}
           onFilter={handleShortMovies}
-          isShortMovies={isShortMovies}
-        />
+          isShortMovies={isShortMovies} />
         <MoviesCardList
           handleLikeClick={handleLikeClick}
           handleCardDelete={handleCardDelete}
@@ -129,7 +124,6 @@ function Movies({
           isLoading={isLoading}
           isReqError={isReqError}
           isNotFound={isNotFound}
-          likedMovies={likedMovies}
         />
       </main>
       <Footer />

@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import './MoviesCard.css';
 import { durationConverter } from "../../utils/utils";
 
-function MoviesCard({ card, isSavedFilms, handleLikeClick, handleCardDelete, savedMovies, likedMovies }) {
-  const defaultSaved = savedMovies.filter((m) => m.movieId === card.id) !== -1;
-  const [saved, setSaved] = useState(defaultSaved);
+function MoviesCard({ card, isSavedFilms, handleLikeClick, handleCardDelete, savedMovies }) {
+  const defaultsaved = savedMovies.filter((m) => m.movieId === card.id).length > 0;
+  const [saved, setSaved] = useState(defaultsaved);
 
   function onCardClick() {
     if (saved) {
@@ -15,12 +15,14 @@ function MoviesCard({ card, isSavedFilms, handleLikeClick, handleCardDelete, sav
   }
 
   useEffect(() => {
-    if (likedMovies.filter((m) => m.movieId === card.id) !== -1) {
-      setSaved(true);
-    } else {
-      setSaved(false);
+    if (card) {
+      if (card._id) {
+        setSaved(true);
+      } else {
+        setSaved(false);
+      }
     }
-  }, [likedMovies, card]);
+  }, [card]);
 
   function onDelete() {
     handleCardDelete(card);
@@ -44,14 +46,14 @@ function MoviesCard({ card, isSavedFilms, handleLikeClick, handleCardDelete, sav
           <button
             type="button"
             className="card__delete-button"
-            onClick={onDelete}
-          ></button>
+            onClick={onDelete}>
+          </button>
         ) : (
           <button
             type="button"
             className={`${saved ? 'card__like-button card__like-button_active' : 'card__like-button'}`}
-            onClick={onCardClick}
-          ></button>
+            onClick={onCardClick} >
+          </button>
         )}
       </div>
     </li>

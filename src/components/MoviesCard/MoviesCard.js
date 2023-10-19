@@ -2,9 +2,12 @@ import React, { useEffect, useState } from "react";
 import './MoviesCard.css';
 import { durationConverter } from "../../utils/utils";
 
-function MoviesCard({ card, isSavedFilms, handleLikeClick, handleCardDelete, savedMovies }) {
-  const defaultsaved = savedMovies.filter((m) => m.movieId === card.id).length > 0;
-  const [saved, setSaved] = useState(defaultsaved);
+function MoviesCard({ card, isSavedFilms, handleLikeClick, handleCardDelete, savedMovies, currentUser }) {
+
+  const isSavedByCurrentUser = savedMovies.some((movie) => movie.movieId === card.id && movie.owner === currentUser._id);
+
+
+  const [saved, setSaved] = useState(isSavedByCurrentUser);
 
   function onCardClick() {
     if (saved) {
@@ -15,14 +18,8 @@ function MoviesCard({ card, isSavedFilms, handleLikeClick, handleCardDelete, sav
   }
 
   useEffect(() => {
-    if (card) {
-      if (card._id) {
-        setSaved(true);
-      } else {
-        setSaved(false);
-      }
-    }
-  }, [card]);
+    setSaved(isSavedByCurrentUser);
+  }, [isSavedByCurrentUser]);
 
   function onDelete() {
     handleCardDelete(card);

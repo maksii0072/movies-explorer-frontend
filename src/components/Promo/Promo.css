@@ -38,6 +38,11 @@
     width: 100%;
     align-items:center;
   }
+  .promo__image {
+    width: 722px;
+    height: 244px;
+    align-items:center;
+  }
   }
 
 @media screen and (max-width: 1023px) {
@@ -58,8 +63,7 @@
   .promo__image {
     height: 230px;
     width: 100%;
-    align-self: center;
-
+    align-items:center;
   }
 }
 

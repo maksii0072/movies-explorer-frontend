@@ -53,7 +53,7 @@ function App() {
     }
   }, [loggedIn]);
 
-  // открытие бурегр-меню
+  // открытие бургер-меню
   function handleMenuClick() {
     setMenuOpen(true);
   }
@@ -203,26 +203,38 @@ function App() {
               <Route
                 path="/"
                 element={
-                  <Main handleMenuClick={handleMenuClick} loggedIn={loggedIn} />
+                  loggedIn ? (
+                    <Navigate to="/movies" />
+                  ) : (
+                    <Main handleMenuClick={handleMenuClick} loggedIn={loggedIn} />
+                  )
                 }
               />
               <Route
                 path="/signin"
                 element={
-                  <Login
-                    loggedIn={loggedIn}
-                    onLogin={handleLoginSubmit}
-                    isLoading={isLoading}
-                  />
+                  loggedIn ? (
+                    <Navigate to="/movies" />
+                  ) : (
+                    <Login
+                      loggedIn={loggedIn}
+                      onLogin={handleLoginSubmit}
+                      isLoading={isLoading}
+                    />
+                  )
                 }
               />
               <Route
                 path="/signup"
                 element={
-                  <Register
-                    onRegistr={handleRegisterSubmit}
-                    isLoading={isLoading}
-                  />
+                  loggedIn ? (
+                    <Navigate to="/movies" />
+                  ) : (
+                    <Register
+                      onRegistr={handleRegisterSubmit}
+                      isLoading={isLoading}
+                    />
+                  )
                 }
               />
               <Route

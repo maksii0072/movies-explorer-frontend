@@ -162,53 +162,37 @@ function App() {
       });
   }
 
-  function handleLikeClick(card, saved, setSaved) {
+  function handleLikeClick(card, savedMovies, setSavedMovies) {
+    // Найдем индекс карточки, если она уже сохранена
     const cardIndex = savedMovies.findIndex((movie) => movie.movieId === card.id);
+    const isCardSaved = cardIndex !== -1;
 
-    if (!saved) {
+    if (!isCardSaved) {
+
       api
         .postSaveCard(card)
         .then((newMovie) => {
-          const updatedSavedMovies = [...savedMovies];
-          updatedSavedMovies.splice(cardIndex, 0, newMovie);
-          setSavedMovies(updatedSavedMovies);
-          setSaved(true);
+          setSavedMovies([...savedMovies, newMovie]);
         })
         .catch((err) => {
-          console.log(err);
+          console.error("Ошибка при сохранении карточки:", err);
         });
     } else {
+
+      const cardIdToDelete = savedMovies[cardIndex]._id;
       api
-        .deleteSaveCard(savedMovies[cardIndex]._id)
+        .deleteSaveCard(cardIdToDelete)
         .then(() => {
           const updatedSavedMovies = [...savedMovies];
           updatedSavedMovies.splice(cardIndex, 1);
           setSavedMovies(updatedSavedMovies);
-          setSaved(false);
         })
         .catch((err) => {
-          console.log(err);
+          console.error("Ошибка при удалении карточки:", err);
         });
     }
   }
 
-
-  function handleCardDelete(movie, setSaved) {
-    const savedMovie = savedMovies.find(
-      (card) => card.movieId === movie.id || card.movieId === movie.movieId
-    );
-    api
-      .deleteSaveCard(savedMovie._id)
-      .then(() => {
-        setSavedMovies((state) =>
-          state.filter((item) => item._id !== savedMovie._id)
-        );
-        setSaved(false);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
 
   return (
     <div className="page">

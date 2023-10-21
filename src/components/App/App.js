@@ -26,7 +26,6 @@ function App() {
   const location = useLocation();
 
   useEffect(() => {
-    // загрузка карточек с сервера
     if (loggedIn) {
       api
         .getSaveCards()
@@ -37,7 +36,8 @@ function App() {
           console.log(err);
         });
     }
-  }, [loggedIn]);
+  }, [loggedIn, location.pathname]);
+
 
   useEffect(() => {
     // загрузка данных пользователя с сервера
@@ -163,17 +163,35 @@ function App() {
   }
 
   function handleLikeClick(card, saved, setSaved) {
-    if (!saved)
+    const cardIndex = savedMovies.findIndex((movie) => movie.movieId === card.id);
+
+    if (!saved) {
       api
         .postSaveCard(card)
         .then((newMovie) => {
-          setSavedMovies([newMovie, ...savedMovies]);
+          const updatedSavedMovies = [...savedMovies];
+          updatedSavedMovies.splice(cardIndex, 0, newMovie);
+          setSavedMovies(updatedSavedMovies);
           setSaved(true);
         })
         .catch((err) => {
           console.log(err);
         });
+    } else {
+      api
+        .deleteSaveCard(savedMovies[cardIndex]._id)
+        .then(() => {
+          const updatedSavedMovies = [...savedMovies];
+          updatedSavedMovies.splice(cardIndex, 1);
+          setSavedMovies(updatedSavedMovies);
+          setSaved(false);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }
+
 
   function handleCardDelete(movie, setSaved) {
     const savedMovie = savedMovies.find(

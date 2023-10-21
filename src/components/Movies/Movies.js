@@ -134,6 +134,7 @@ function Movies({
       </main>
       <Footer />
     </section>
+  )
 }
 
 export default Movies;

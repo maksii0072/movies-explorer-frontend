@@ -174,24 +174,22 @@ function App() {
           console.log(err);
         });
   }
+
   function handleCardDelete(movie, setSaved) {
     const savedMovie = savedMovies.find(
       (card) => card.movieId === movie.id || card.movieId === movie.movieId
     );
-
-    if (savedMovie) {
-      api
-        .deleteSaveCard(savedMovie._id)
-        .then(() => {
-          setSavedMovies((state) =>
-            state.filter((item) => item._id !== savedMovie._id)
-          );
-          setSaved(false);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
+    api
+      .deleteSaveCard(savedMovie._id)
+      .then(() => {
+        setSavedMovies((state) =>
+          state.filter((item) => item._id !== savedMovie._id)
+        );
+        setSaved(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   return (

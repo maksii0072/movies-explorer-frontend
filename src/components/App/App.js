@@ -168,7 +168,7 @@ function App() {
     const isCardSaved = cardIndex !== -1;
 
     if (!isCardSaved) {
-
+      // Если карточка не сохранена, выполняем запрос на сохранение
       api
         .postSaveCard(card)
         .then((newMovie) => {
@@ -178,7 +178,7 @@ function App() {
           console.error("Ошибка при сохранении карточки:", err);
         });
     } else {
-
+      // Если карточка уже сохранена, выполняем запрос на удаление
       const cardIdToDelete = savedMovies[cardIndex]._id;
       api
         .deleteSaveCard(cardIdToDelete)
@@ -193,6 +193,23 @@ function App() {
     }
   }
 
+
+  function handleCardDelete(movie, setSaved) {
+    const savedMovie = savedMovies.find(
+      (card) => card.movieId === movie.id || card.movieId === movie.movieId
+    );
+    api
+      .deleteSaveCard(savedMovie._id)
+      .then(() => {
+        setSavedMovies((state) =>
+          state.filter((item) => item._id !== savedMovie._id)
+        );
+        setSaved(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   return (
     <div className="page">

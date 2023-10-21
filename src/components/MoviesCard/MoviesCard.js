@@ -3,28 +3,33 @@ import './MoviesCard.css';
 import { durationConverter } from "../../utils/utils";
 
 function MoviesCard({ card, isSavedFilms, handleLikeClick, handleCardDelete, savedMovies }) {
-  const defaultsaved = savedMovies.filter((m) => m.movieId === card.id).length > 0;
-  const [saved, setSaved] = useState(defaultsaved);
+  const [saved, setSaved] = useState(false);
 
-  function onCardClick() {
-    if (saved) {
-      handleCardDelete(card, () => setSaved(false));
-    } else {
-      handleLikeClick(card, saved, setSaved);
-    }
-  }
   useEffect(() => {
-    if (card) {
-      if (card._id) {
+
+    if (localStorage.getItem('savedMovies')) {
+      let savedMovies = JSON.parse(localStorage.getItem('savedMovies'));
+      if (savedMovies.some(movie => movie.movieId === card.id)) {
         setSaved(true);
-      } else {
-        setSaved(false);
       }
     }
   }, [card]);
 
+  function onCardClick() {
+    if (saved) {
+      handleCardDelete(card, setSaved);
+    } else {
+      handleLikeClick(card, saved, setSaved);
+
+
+      let savedMovies = JSON.parse(localStorage.getItem('savedMovies')) || [];
+      savedMovies.push(card);
+      localStorage.setItem('savedMovies', JSON.stringify(savedMovies));
+    }
+  }
+
   function onDelete() {
-    handleCardDelete(card, () => setSaved(false)); 
+    handleCardDelete(card);
   }
 
   return (
@@ -50,7 +55,7 @@ function MoviesCard({ card, isSavedFilms, handleLikeClick, handleCardDelete, sav
         ) : (
           <button
             type="button"
-            className={`${saved ? 'card__like-button card__like-button_active' : 'card__like-button'}`}
+            className={`card__like-button ${saved ? 'card__like-button_active' : ''}`}
             onClick={onCardClick} >
           </button>
         )}

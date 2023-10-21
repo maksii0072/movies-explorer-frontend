@@ -1,5 +1,4 @@
-
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Movies.css';
 import Header from '../Header/Header';
 import SearchForm from '../SearchForm/SearchForm';
@@ -16,15 +15,13 @@ function Movies({
   handleLikeClick,
   loggedIn,
   handleCardDelete,
-  savedMovies
-}) {
+  savedMovies }) {
   const [initialMovies, setInitialMovies] = useState([]);
   const [filteredMovies, setFilteredMovies] = useState([]);
   const [isShortMovies, setIsShortMovies] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isReqError, setIsReqError] = useState(false);
   const [isNotFound, setIsNotFound] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
 
   function handleFilterMovies(movies, query, short) {
     const moviesList = filterMovies(movies, query, short);
@@ -32,7 +29,6 @@ function Movies({
     setFilteredMovies(short ? durationFilter(moviesList) : moviesList);
     localStorage.setItem('movies', JSON.stringify(moviesList));
     localStorage.setItem('allMovies', JSON.stringify(movies));
-    localStorage.setItem('isShortMovies', short);
   }
 
   function handleShortMovies() {
@@ -46,11 +42,13 @@ function Movies({
     } else {
       setFilteredMovies(initialMovies);
     }
-    localStorage.setItem('isShortMovies', !isShortMovies);
+    localStorage.setItem('shortMovies', !isShortMovies);
   }
 
   function handleSearchMovies(query) {
-    setSearchQuery(query);
+    localStorage.setItem('movieSearch', query);
+    localStorage.setItem('shortMovies', isShortMovies);
+
     if (localStorage.getItem('allMovies')) {
       const movies = JSON.parse(localStorage.getItem('allMovies'));
       handleFilterMovies(movies, query, isShortMovies);
@@ -69,22 +67,21 @@ function Movies({
           setIsLoading(false);
         });
     }
-
-    localStorage.setItem('movieSearch', query);
   }
 
   useEffect(() => {
-
-    const isShortMovies = localStorage.getItem('isShortMovies') === 'true';
-    setIsShortMovies(isShortMovies);
+    if (localStorage.getItem('shortMovies') === 'true') {
+      setIsShortMovies(true);
+    } else {
+      setIsShortMovies(false);
+    }
   }, []);
 
   useEffect(() => {
-
     if (localStorage.getItem('movies')) {
       const movies = JSON.parse(localStorage.getItem('movies'));
       setInitialMovies(movies);
-      if (localStorage.getItem('isShortMovies') === 'true') {
+      if (localStorage.getItem('shortMovies') === 'true') {
         setFilteredMovies(durationFilter(movies));
       } else {
         setFilteredMovies(movies);
@@ -93,23 +90,20 @@ function Movies({
   }, []);
 
   useEffect(() => {
-
     if (localStorage.getItem('movieSearch')) {
-      const query = localStorage.getItem('movieSearch');
-      setSearchQuery(query);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (filteredMovies.length === 0) {
-      setIsNotFound(true);
+      if (filteredMovies.length === 0) {
+        setIsNotFound(true);
+      } else {
+        setIsNotFound(false);
+      }
     } else {
       setIsNotFound(false);
     }
   }, [filteredMovies]);
 
+
   return (
-<section className="movies">
+    <section className="movies">
       <BurgerMenu
         menuOpen={menuOpen}
         closePopups={closePopups} />
@@ -134,7 +128,7 @@ function Movies({
       </main>
       <Footer />
     </section>
-  )
+  );
 }
 
 export default Movies;

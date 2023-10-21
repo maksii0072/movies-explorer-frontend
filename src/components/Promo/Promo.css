@@ -58,6 +58,7 @@
   .promo__image {
     height: 230px;
     width: 100%;
+    align-self: center;
 
   }
 }
@@ -89,7 +90,7 @@
     width: 722px;
     height: 244px;
     align-self: flex-end;
-    
+
   }
 }
 @media screen and (max-width: 576px) {

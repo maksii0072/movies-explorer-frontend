@@ -3,26 +3,35 @@ import './MoviesCard.css';
 import { durationConverter } from "../../utils/utils";
 
 function MoviesCard({ card, isSavedFilms, handleLikeClick, handleCardDelete, savedMovies }) {
-  const defaultsaved = savedMovies.filter((m) => m.movieId === card.id).length > 0;
-  const [saved, setSaved] = useState(defaultsaved);
+  const defaultSaved = savedMovies.some((m) => m.movieId === card.id);
+  const [saved, setSaved] = useState(defaultSaved);
+
+  useEffect(() => {
+    const localStorageKey = `movie-${card.id}`;
+    const localStorageValue = localStorage.getItem(localStorageKey);
+
+    if (localStorageValue === "true") {
+      setSaved(true);
+    } else {
+      setSaved(false);
+    }
+  }, [card]);
 
   function onCardClick() {
     if (saved) {
-      handleCardDelete(card, setSaved);
+      handleCardDelete(card, () => {
+        setSaved(false);
+        const localStorageKey = `movie-${card.id}`;
+        localStorage.setItem(localStorageKey, "false");
+      });
     } else {
-      handleLikeClick(card, saved, setSaved);
+      handleLikeClick(card, saved, () => {
+        setSaved(true);
+        const localStorageKey = `movie-${card.id}`;
+        localStorage.setItem(localStorageKey, "true");
+      });
     }
   }
-
-  useEffect(() => {
-    if (card) {
-      if (card._id) {
-        setSaved(true);
-      } else {
-        setSaved(false);
-      }
-    }
-  }, [card]);
 
   function onDelete() {
     handleCardDelete(card);

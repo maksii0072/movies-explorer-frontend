@@ -9,18 +9,12 @@ function MoviesCard({ card, isSavedFilms, handleLikeClick, handleCardDelete, sav
   const [saved, setSaved] = useState(defaultsaved);
 
 
-
-
   function onCardClick() {
     if (saved) {
       handleCardDelete(card, setSaved);
     } else {
       handleLikeClick(card, saved, setSaved);
-    console.log(saved);
-
     }
-    console.log(saved);
-
   }
 
   useEffect(() => {

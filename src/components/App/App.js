@@ -26,17 +26,19 @@ function App() {
   const location = useLocation();
 
 
-  useEffect(() => { // загрузка карточек с сервера
-    if (loggedIn) {
+  useEffect(() => {
+    const loggedInFromLocalStorage = localStorage.getItem('loggedIn') === 'true';
+    if (loggedInFromLocalStorage) {
+
       api.getSaveCards()
         .then((data) => {
           setSavedMovies(data);
         })
         .catch((err) => {
           console.log(err);
-        })
+        });
     }
-  }, [loggedIn]);
+  }, []);
 
   useEffect(() => { // загрузка данных пользователя с сервера
     if (loggedIn) {

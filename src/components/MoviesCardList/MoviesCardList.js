@@ -23,11 +23,11 @@ function MoviesCardList({
   function cardsCount() {
     const display = window.innerWidth;
     if (display > DESKTOP) {
-      setShownCards({MOVIES_CARDS_1180});
+      setShownCards(MOVIES_CARDS_1180);
     } else if (display > TABLET) {
-      setShownCards({MOVIES_CARDS_768});
+      setShownCards(MOVIES_CARDS_768);
     } else if (display < TABLET) {
-      setShownCards({MOVIES_CARDS_480});
+      setShownCards(MOVIES_CARDS_480);
     }
   }
 

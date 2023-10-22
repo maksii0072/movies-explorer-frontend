@@ -3,10 +3,12 @@ import './MoviesCard.css';
 import { durationConverter } from "../../utils/utils";
 
 function MoviesCard({ card, isSavedFilms, handleLikeClick, handleCardDelete, savedMovies }) {
+
   const defaultsaved = savedMovies.filter((m) => m.movieId === card.id).length > 0;
+  console.log(isSavedFilms);
   const [saved, setSaved] = useState(defaultsaved);
-console.log(saved);
-console.log(isSavedFilms);
+  console.log(saved);
+console.log(defaultsaved);
   function onCardClick() {
     if (saved) {
       handleCardDelete(card, setSaved);

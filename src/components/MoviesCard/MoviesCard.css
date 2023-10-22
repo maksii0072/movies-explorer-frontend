@@ -51,13 +51,13 @@
 .card__like-button {
   position: absolute;
   top: 19px;
-  right: 24px;
+  right: 16px;
   padding: 0;
   border: none;
   background-color: transparent;
   background-image: url(../../images/like.svg);
   background-repeat: no-repeat;
-  width: 18px;
+  width: 14px;
   height: 12px;
   cursor: pointer;
 }

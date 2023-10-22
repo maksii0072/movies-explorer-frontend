@@ -19,9 +19,7 @@ function MoviesCard({
       handleCardDelete(card, setSaved);
     } else {
       handleLikeClick(card, saved, setSaved);
-      console.log(saved);
     }
-    console.log(saved);
   }
 
   function onDelete() {

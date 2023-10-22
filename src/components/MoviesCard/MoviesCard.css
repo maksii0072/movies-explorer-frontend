@@ -70,7 +70,7 @@
   background-image: url(../../images/like_active.svg);
   position: absolute;
   top: 19px;
-  right: 24px;
+  right: 16px;
   padding: 0;
   border: none;
   background-color: transparent;
@@ -89,7 +89,7 @@
   background-position: center;
   background-repeat: no-repeat;
   background-color: transparent;
-  display: none;
+
 }
 
 .card__delete-button:hover {

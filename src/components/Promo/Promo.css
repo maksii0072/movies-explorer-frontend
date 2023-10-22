@@ -39,7 +39,7 @@
     align-items:center;
   }
   .promo__image {
-    align-items:center;
+    align-self: center;
   }
   }
 

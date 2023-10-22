@@ -120,7 +120,7 @@ function Movies({
           handleCardDelete={handleCardDelete}
           savedMovies={savedMovies}
           cards={filteredMovies}
-          isSavedFilms={true}
+          isSavedFilms={false}
           isLoading={isLoading}
           isReqError={isReqError}
           isNotFound={isNotFound}

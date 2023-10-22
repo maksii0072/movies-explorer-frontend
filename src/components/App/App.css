@@ -1,13 +1,19 @@
-.app {
+.page {
+  box-sizing: border-box;
   background-color: #202020;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
 }
 
-.app__container {
-  min-width: 320px;
+.page__content {
   max-width: 1280px;
-  min-height: 100vh;
+  min-width: 300px;
   margin: 0 auto;
-  font-family: "Inter", "Arial", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Inter', Arial, sans-serif;
+  width: 100%;
+}
+
+.inactive-button {
+  pointer-events: none;
 }

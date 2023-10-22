@@ -1,261 +1,148 @@
 .header {
-}
-
-.header_theme_blue {
-  background-color: #073042;
-}
-
-.header_theme_dark {
-  background-color: #202020;
-}
-
-.header__nav {
+  padding: 0 70px;
+  min-height: 74px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 18px 70px;
+  position: relative;
+  justify-content: space-between;
 }
 
-.header__links {
+.header__button-container {
+  margin-left: auto;
   display: flex;
-  justify-content: space-between;
+  gap: 30px;
   align-items: center;
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
+  list-style: none;
 }
 
-.header__links-item {
-  margin-right: 30px;
+.header__button-container_films {
+  padding-left: 100px;
+  display: flex;
+  gap: 16px;
+  list-style: none;
 }
 
-.header__links-item_logo {
-  margin-right: 44px;
-}
-
-.header__links-item_left {
-  margin-right: 16px;
-}
-
-.header__links-item:last-of-type {
-  margin-right: 0;
-}
-
-.header__link {
-  font-size: 12px;
-  font-weight: 500;
-  color: #fff;
-  line-height: 16px;
+.header__button {
+  min-height: 32px;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFF;
   text-decoration: none;
 }
 
-.header__link:hover {
-  transition: 0.3s;
-  opacity: 0.7;
+.header__button_active {
+  font-weight: 500;
 }
 
-.header__link_type_signin {
-  display: block;
-  padding: 8px 20px;
-  background-color: #3ddc84;
+.header__button:hover {
+  cursor: pointer;
+  color: #3DDC84;
+}
+
+.header__button-green {
   color: #000;
+  background-color: #3DDC84;
+  min-width: 76px;
   border-radius: 3px;
 }
 
-.header__link_type_films {
-  font-size: 13px;
-  line-height: 18px;
+.header__button-green:hover {
+  cursor: pointer;
+  background-color: #000;
 }
 
-.header__link_type_savedfilms {
-  font-size: 13px;
-  line-height: 18px;
-  font-weight: 400;
-}
-
-.header__link_type_account {
+.header__account-button {
   display: flex;
   align-items: center;
-}
-
-.header__link_type_account::after {
-  content: "";
-  background-image: url("../../images/accountIcon.svg");
-  background-color: #313131;
-  background-position: center;
-  background-size: 10.4px 10.7px;
-  background-repeat: no-repeat;
-  border-radius: 6px;
-  width: 30px;
-  height: 30px;
-  margin-left: 13px;
-  float: right;
-}
-
-.header__menu-wrapper {
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  display: flex;
-  justify-content: flex-end;
-  background-color: rgba(0, 0, 0, 0.3);
-  z-index: 1;
-  visibility: hidden;
-}
-
-.header__menu-wrapper_visible {
-  visibility: visible;
-}
-
-.header__menu-button {
-  width: 44px;
-  height: 44px;
-  background-image: url("../../images/burgerMenuIcon.svg");
-  background-repeat: no-repeat;
-  background-position: center;
-  padding: 0;
-  margin: 0;
-  background-color: inherit;
-  border: none;
-  cursor: pointer;
-  display: none;
-}
-
-.header__menu-button:hover {
-  transition: 0.3s;
-  opacity: 0.7;
-}
-
-.header__menu-links-wrapper {
-  background-color: #202020;
-  transform: translateX(100%);
-  transition: 0.3s;
-  visibility: hidden;
-  padding: 112px 90px 92px;
-  width: 50%;
-}
-
-.visible-animation {
-  transition: 0.3s;
-  visibility: visible;
-  transform: translateX(0);
-}
-
-.header__menu-button-close {
-  width: 22px;
-  height: 22px;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-color: inherit;
-  background-image: url("../../images/closeBurgerMenuIcon.svg");
-  border: none;
-  position: absolute;
-  top: 23px;
-  right: 23px;
-  padding: 0;
-  cursor: pointer;
-}
-
-.header__menu-button-close:hover {
-  transition: 0.3s;
-  opacity: 0.7;
-}
-
-.header__menu-links {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 0;
-  list-style-type: none;
-  height: 100%;
-  padding: 0;
-}
-
-.header__menu-links-item {
-  margin-bottom: 28px;
-}
-
-.header__menu-links-item:last-of-type {
-  margin: auto 0 0;
-}
-
-.header__menu-link {
+  gap: 13px;
   font-weight: 500;
-  font-size: 18px;
-  line-height: 22px;
-  color: white;
-  text-decoration: none;
-  padding-bottom: 4px;
-}
-
-.header__menu-link:hover {
-  transition: 0.3s;
-  opacity: 0.7;
-}
-
-.header__menu-link_active {
-  border-bottom: 2px solid white;
-}
-
-.header__menu-link_type_account {
-  display: flex;
-  align-items: center;
   font-size: 14px;
   line-height: 16px;
-}
-
-.header__menu-link_type_account::after {
-  content: "";
-  background-image: url("../../images/accountIcon.svg");
-  background-color: #313131;
-  background-position: center;
-  background-size: 10.4px 10.7px;
-  background-repeat: no-repeat;
-  border-radius: 6px;
-  width: 30px;
+  color: #fff;
+  text-decoration: none;
+  width: 100px;
   height: 30px;
-  margin-left: 13px;
-  float: right;
+  background: transparent;
 }
 
-@media screen and (max-width: 840px) {
-  .header__link_type_account {
+.header__account-button:hover {
+  cursor: pointer;
+  color: #3DDC84;
+}
+
+.header__account-image {
+  padding: 9.7px 9.8px 9.6px 9.8px;
+  background-color: #313131;
+  width: 10.38px;
+  height: 10.67px;
+  border-radius: 6px;
+}
+
+.header__account-image:hover {
+  cursor: pointer;
+  background-color: #3DDC84;
+}
+
+.header__burger-button {
+  padding: 0;
+  width: 44px;
+  height: 44px;
+  display: none;
+  background: transparent;
+  border: none;
+  justify-self: center;
+  border-radius: 3px;
+}
+
+.header__burger-button:hover {
+  background-color: #3DDC84;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1023px) {
+  .header {
+    padding: 0 30px;
+  }
+
+  .header__button-container_films {
     display: none;
   }
 
-  .header__link_type_films {
+  .header__account-button {
     display: none;
   }
 
-  .header__link_type_savedfilms {
-    display: none;
-  }
-
-  .header__menu-button {
-    display: block;
-  }
-
-  .header__nav {
-    padding: 18px 30px;
+  .header__burger-button {
+    display: flex;
   }
 }
 
-@media screen and (max-width: 700px) {
-  .header__menu-links-wrapper {
-    width: 100%;
-    padding: 100px 10px 44px;
-  }
-}
-
-@media screen and (max-width: 320px) {
-  .header__nav {
-    padding: 18px 14px;
+@media screen and (max-width: 576px) {
+  .header {
+    padding: 0 14px;
+    margin-top: 0;
   }
 
-  .header__menu-button {
+  .header__button-container {
+    gap: 14px;
+  }
+
+  .header__button {
+    min-height: 26px;
+    font-size: 10px;
+    line-height: 16px;
+  }
+
+  .header__burger-button {
     width: 40px;
     height: 43px;
+  }
+
+  .header__button-black {
+    min-width: 54px;
   }
 }

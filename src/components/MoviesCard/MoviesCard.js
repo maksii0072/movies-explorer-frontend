@@ -1,31 +1,28 @@
 import React, { useEffect, useState } from "react";
-import './MoviesCard.css';
+import "./MoviesCard.css";
 import { durationConverter } from "../../utils/utils";
 
-function MoviesCard({ card, isSavedFilms, handleLikeClick, handleCardDelete, savedMovies }) {
-
-  const defaultsaved = savedMovies.filter((m) => m.movieId === card.id).length > 0;
+function MoviesCard({
+  card,
+  isSavedFilms,
+  handleLikeClick,
+  handleCardDelete,
+  savedMovies,
+}) {
+  const defaultsaved =
+    savedMovies.filter((m) => m.movieId === card.id).length > 0;
 
   const [saved, setSaved] = useState(defaultsaved);
-
 
   function onCardClick() {
     if (saved) {
       handleCardDelete(card, setSaved);
     } else {
       handleLikeClick(card, saved, setSaved);
+      console.log(saved);
     }
+    console.log(saved);
   }
-
-  useEffect(() => {
-    if (card) {
-      if (card._id) {
-        setSaved(true);
-      } else {
-        setSaved(false);
-      }
-    }
-  }, [card]);
 
   function onDelete() {
     handleCardDelete(card);
@@ -37,7 +34,11 @@ function MoviesCard({ card, isSavedFilms, handleLikeClick, handleCardDelete, sav
         <img
           className="card__image"
           alt={card.nameRU}
-          src={isSavedFilms ? card.image : `https://api.nomoreparties.co/${card.image.url}` }
+          src={
+            isSavedFilms
+              ? card.image
+              : `https://api.nomoreparties.co/${card.image.url}`
+          }
         />
       </a>
       <div className="card__container">
@@ -49,14 +50,18 @@ function MoviesCard({ card, isSavedFilms, handleLikeClick, handleCardDelete, sav
           <button
             type="button"
             className="card__delete-button"
-            onClick={onDelete}>
-          </button>
+            onClick={onDelete}
+          ></button>
         ) : (
           <button
             type="button"
-            className={`${saved ? 'card__like-button card__like-button_active' : 'card__like-button'}`}
-            onClick={onCardClick} >
-          </button>
+            className={`${
+              saved
+                ? "card__like-button card__like-button_active"
+                : "card__like-button"
+            }`}
+            onClick={onCardClick}
+          ></button>
         )}
       </div>
     </li>

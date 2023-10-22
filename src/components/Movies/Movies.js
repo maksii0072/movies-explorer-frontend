@@ -23,12 +23,17 @@ function Movies({
   const [isReqError, setIsReqError] = useState(false);
   const [isNotFound, setIsNotFound] = useState(false);
 
+  const saveMoviesToLocalStorage = (moviesToSave) => {
+    localStorage.setItem('movies', JSON.stringify(moviesToSave));
+    localStorage.setItem('allMovies', JSON.stringify(moviesToSave));
+  };
+
+
   function handleFilterMovies(movies, query, short) {
     const moviesList = filterMovies(movies, query, short);
     setInitialMovies(moviesList);
     setFilteredMovies(short ? durationFilter(moviesList) : moviesList);
-    localStorage.setItem('movies', JSON.stringify(moviesList));
-    localStorage.setItem('allMovies', JSON.stringify(movies));
+    saveMoviesToLocalStorage(moviesList);
   }
 
   function handleShortMovies() {

@@ -1,77 +1,66 @@
-.filter {
-  margin: 0 auto;
-  padding-top: 31px;
+.filtercheckbox {
   display: flex;
-  justify-content: center;
-}
-
-.filter__text {
-  font-style: normal;
+  color: white;
   font-weight: 400;
-  font-size: 12px;
+  font-size: 13px;
   line-height: 18px;
-  margin-left: 12px;
-  color: #fff;
+  cursor: pointer;
 }
 
-.filter__checkbox {
+.filtercheckbox__input {
+  display: none;
+}
+
+.filtercheckbox__visible-input {
+  display: inline-block;
   width: 36px;
   height: 20px;
-  border: none;
-  outline: none;
-  background-color: #EBEBEB;
-  border-radius: 20px;
   position: relative;
-  cursor: pointer;
-  appearance: none;
-}
-.filter__checkbox:hover {
-  background-color: #e1dcdc;
-
+  background-color: #202020;
+  border-radius: 20px;
+  margin-right: 15px;
 }
 
-.filter__checkbox::after {
-  height: 8px;
-  width: 8px;
+.filtercheckbox__visible-input::before {
+  content: "";
+  display: block;
+  width: 22px;
+  height: 22px;
   position: absolute;
-  top: 6px;
-  left: 6px;
-  background-color: #F5F5F5;
-  content: '';
-  border-radius: 50%;
-  transition: 0.3s ease;
+  top: 55%;
+  left: 25%;
+  transform: translate(-50%, -50%);
+  background: url("../../images/searchCheckbox.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-.filter__checkbox:checked::after {
-  height: 8px;
-  width: 8px;
-  position: absolute;
-  top: 6px;
-  right: 6px;
-  background-color: #fff;
-  content: '';
-  border-radius: 50%;
-  transition: 0.4s ease;
-  transform: translate(16px);
+.filtercheckbox__input:checked + .filtercheckbox__visible-input::before {
+  transition: 0.3s;
+  left: 75%;
 }
 
-.filter__checkbox:checked {
-  background-color: #3DDC84;
+.filtercheckbox__input:checked + .filtercheckbox__visible-input {
+  transition: 0.3s;
+  background-color: #3ddc84;
 }
 
-@media screen and (max-width: 769px) {
-  .filter {
-    padding-top: 41px;
-  }
+.filtercheckbox__input:not(checked) + .filtercheckbox__visible-input::before {
+  transition: 0.3s;
+  left: 30%;
 }
 
-@media screen and (max-width: 576px) {
-  .filter {
-    padding-top: 74px;
-  }
+.filtercheckbox__input:not(checked) + .filtercheckbox__visible-input {
+  transition: 0.3s;
+  background-color: #807f7f;
+}
 
-  .filter__text {
-    font-size: 11px;
-    line-height: 18px;
+@media screen and (max-width: 700px) {
+  .filtercheckbox {
+    position: absolute;
+    bottom: 45px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
   }
 }

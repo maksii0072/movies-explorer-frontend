@@ -5,7 +5,8 @@ import { durationConverter } from "../../utils/utils";
 function MoviesCard({ card, isSavedFilms, handleLikeClick, handleCardDelete, savedMovies }) {
   const defaultsaved = savedMovies.filter((m) => m.movieId === card.id).length > 0;
   const [saved, setSaved] = useState(defaultsaved);
-
+console.log(saved);
+console.log(isSavedFilms);
   function onCardClick() {
     if (saved) {
       handleCardDelete(card, setSaved);
@@ -34,7 +35,7 @@ function MoviesCard({ card, isSavedFilms, handleLikeClick, handleCardDelete, sav
         <img
           className="card__image"
           alt={card.nameRU}
-          src={isSavedFilms ? card.image : `https://api.nomoreparties.co/${card.image.url}`}
+          src={isSavedFilms ? card.image : `https://api.nomoreparties.co/${card.image.url}` }
         />
       </a>
       <div className="card__container">

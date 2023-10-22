@@ -50,8 +50,8 @@
 
 @media screen and (max-width: 1023px) {
   .cards__list {
-    padding: 70px 30px 30px;
-    grid-template-columns: repeat(2, 339px);
+    padding: 70px 11px 30px;
+    grid-template-columns: repeat(2, 264px);
     gap: 36px 30px;
     justify-content: center;
   }

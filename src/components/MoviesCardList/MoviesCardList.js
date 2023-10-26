@@ -1,116 +1,39 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useLocation } from 'react-router-dom';
-import './MoviesCardList.css';
 import MoviesCard from '../MoviesCard/MoviesCard';
-import Preloader from '../Preloader/Preloader';
-import SearchError from '../SearchError/SearchError';
-import { DESKTOP_VERSION, TABLET_VERSION, MOBILE_VERSION, DESKTOP, TABLET,MOVIES_CARDS_1180,MOVIES_CARDS_768,MOVIES_CARDS_480 } from '../../utils/Constants/constants';
+import './MoviesCardList.css';
 
-function MoviesCardList({
-  handleLikeClick,
-  handleCardDelete,
-  isLoading,
-  isNotFound,
-  isReqError,
-  isSavedFilms,
-  savedMovies,
-  cards
-}) {
+function MoviesCardList({ notFoundMessage, moviesData, savedMovies, onSaveMovie, onDeleteMovie, amountToShow, onClick }) {
 
-  const [shownCards, setShownCards] = useState(0);
   const { pathname } = useLocation();
 
-  function cardsCount() {
-    const display = window.innerWidth;
-    if (display > DESKTOP) {
-      setShownCards(MOVIES_CARDS_1180);
-    } else if (display > TABLET) {
-      setShownCards(MOVIES_CARDS_768);
-    } else if (display < TABLET) {
-      setShownCards(MOVIES_CARDS_480);
-    }
-  }
-
-  function showMoreCards() {
-    const display = window.innerWidth;
-    if (display > DESKTOP) {
-      setShownCards(shownCards + DESKTOP_VERSION);
-    } else if (display > TABLET) {
-      setShownCards(shownCards + TABLET_VERSION);
-    }
-    else if (display < TABLET) {
-      setShownCards(shownCards + MOBILE_VERSION);
-    }
-  }
-
-  useEffect(() => {
-    cardsCount();
-  }, []);
-
-  useEffect(() => {
-    setTimeout(() => {
-      window.addEventListener('resize', cardsCount);
-    }, 500);
-  });
-
   return (
-    <section className="cards">
-      {isLoading && <Preloader />}
-      {isNotFound && !isLoading && <SearchError errorText={'Ничего не найдено'} />}
-      {isReqError && !isLoading && (
-        <SearchError
-          errorText={
-            'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз'
+    <section className={`moviesCardList ${pathname === '/saved-movies' ? 'moviesCardList-saved' : ''}`}>
+      {
+        <ul className='moviesCardList__ul'>
+          {
+            moviesData?.slice(0, amountToShow).map((movieData) => (
+              <MoviesCard
+                key={movieData._id || movieData.id}
+                id={movieData._id || movieData.id}
+                movieData={movieData}
+                savedMovies={savedMovies}
+                onSaveMovie={onSaveMovie}
+                onDeleteMovie={onDeleteMovie}
+              />
+            ))
           }
-        />
-      )}
-      {!isLoading && !isReqError && !isNotFound && (
-        <>
-          {pathname === '/saved-movies' ? (
-            <>
-              <ul className="cards__list">
-                {cards.map((card) => (
-                  <MoviesCard
-                    key={isSavedFilms ? card._id : card.id}
-                    handleLikeClick={handleLikeClick}
-                    card={card}
-                    cards={cards}
-                    handleCardDelete={handleCardDelete}
-                    isSavedFilms={isSavedFilms}
-                    savedMovies={savedMovies}
-                  />
-                ))}
-              </ul>
-            </>
-          ) : (
-            <>
-              <ul className="cards__list">
-                {(!!cards) ? cards.slice(0, shownCards).map((card) => (
-                  <MoviesCard
-                    key={isSavedFilms ? card._id : card.id}
-                    handleLikeClick={handleLikeClick}
-                    card={card}
-                    cards={cards}
-                    handleCardDelete={handleCardDelete}
-                    isSavedFilms={isSavedFilms}
-                    savedMovies={savedMovies}
-                  />
-                )) : ""}
-              </ul>
-              <div className="cards__button-container">
-                {(!!cards && cards.length > shownCards) ? (
-                  <button className="cards__button" onClick={showMoreCards}>
-                    Ещё
-                  </button>
-                ) : (
-                  ''
-                )}
-              </div>
-            </>
-          )}
-        </>
-      )}
-    </section >
+        </ul>
+      }
+      {
+        notFoundMessage ? <p className='moviesCardList__notfound'>Ничего не найдено</p> : <></>
+      }
+      {
+        moviesData.length > amountToShow && (
+          <button className={`moviesCardList__button ${pathname === '/saved-movies' ? 'moviesCardList__button-saved' : ''}`} type='button' onClick={onClick}>Ещё</button>
+        )
+      }
+    </section>
   );
 }
 

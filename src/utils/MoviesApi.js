@@ -1,13 +1,35 @@
-import { checkResponse } from './MainApi';
+import { EXTERNAL_URL } from './Constants/constants';
 
-const BASE_URL = 'https://api.nomoreparties.co/beatfilm-movies';
+class MoviesApi {
+    constructor(config) {
+        this._url = config.url;
+        this._headers = config.headers;
+    }
 
-export function getCards() {
-  return fetch(BASE_URL, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  })
-  .then(checkResponse);
+    _checkResponse(res) {
+        if (res.ok) {
+            return res.json();
+        }
+
+        return Promise.reject(`Что-то пошло не так: ${res.status}`);
+    }
+
+    _request(url, options) {
+        return fetch(url, options).then(this._checkResponse);
+    }
+
+    getAllMovies() { // Возвращает все фильмы
+        return this._request(`${this._url}`, {
+            headers: this._headers
+        });
+    }
 }
+
+const moviesApi = new MoviesApi({
+    url: `${EXTERNAL_URL}/beatfilm-movies`,
+    headers: {
+        'Content-Type': 'application/json'
+    }
+});
+
+export default moviesApi;

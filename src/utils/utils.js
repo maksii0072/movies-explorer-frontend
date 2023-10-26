@@ -1,20 +1,7 @@
-export function filterMovies(movies, query) {
-  const moviesByQuery = !!movies ? movies.filter((movie) => {
-    const movieRu = String(movie.nameRU).toLowerCase().trim();
-    const movieEn = String(movie.nameEN).toLowerCase().trim();
-    const userQuery = query ? query.toLowerCase().trim() : ''; 
-    return movieRu.indexOf(userQuery) !== -1 || movieEn.indexOf(userQuery) !== -1;
-  }) : [];
-  return moviesByQuery;
-}
+import { TIME_UNIT }  from './Constants/constants';
 
-
-export function durationFilter(movies) {
-  return movies.filter((movie) => movie.duration < 40);
-}
-
-export function durationConverter(duration) {
-  const hours = Math.floor(duration / 60);
-  const minutes = duration % 60;
-  return `${hours}ч ${minutes}м`;
+export default function duration(movieDuration) { // Переводит продолжительность фильма в часы:минуты
+    const hours = Math.floor(movieDuration / TIME_UNIT);
+    const minutes = movieDuration % TIME_UNIT;
+    return `${hours ? `${hours}ч` : ''} ${minutes ? `${minutes}м` : ''}`
 }

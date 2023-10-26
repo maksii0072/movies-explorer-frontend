@@ -1,0 +1,136 @@
+.sideBar{
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    visibility: hidden;
+    opacity: 0;
+    z-index: 1;
+    transition: visibility .2s, opacity .2s ease-in;
+}
+
+.sideBar_is-opened{
+    visibility: visible;
+    opacity: 1;
+    background-color: rgba(0, 0, 0, .3);
+}
+
+.sideBar__container{
+    position: absolute;
+    right: 0;
+    height: 100%;
+    background-color: #202020;
+    width: 520px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sideBar__movies{
+    margin-top: 159px;
+    color: #FFF;
+    text-align: center;
+    text-decoration: none;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    transition: opacity .5s linear;
+}
+
+.sideBar__movies:nth-child(2){
+    margin-top: 28px;
+    padding-bottom: 4px;
+    border-bottom: 2px solid #FFF;
+}
+
+.sideBar__movies:nth-child(3) {
+    margin-top: 22px;
+}
+
+.sideBar__movies:hover{
+    opacity: .7;
+    cursor: pointer;
+}
+
+.sideBar__account{
+    margin-top: 621px;
+    margin-left: 6px;
+    display: flex;
+    align-items: center;
+    color: #FFF;
+    text-decoration: none;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 12px;
+    transition: opacity .5s linear;
+}
+
+.sideBar__account:hover{
+    opacity: .7;
+    cursor: pointer;
+}
+
+.sideBar__img{
+    margin-left: 7px;
+    padding: 7px;
+    background-color: #313131;
+    border-radius: 50px;
+}
+
+
+.sideBar__button{
+    width: 22px;
+    height: 22px;
+    position: absolute;
+    right: 26.44px;
+    top: 26.44px;
+    padding: 0;
+    background-image: url(../../images/sideBar.svg);
+    background-color: transparent;
+    background-position: center;
+    border: none;
+    transition: opacity .5s linear;
+}
+
+.sideBar__button:hover{
+    opacity: .8;
+    cursor: pointer;
+}
+
+
+@media screen and (max-width: 560px) {
+    .sideBar{
+        width: 100%;
+    }
+
+    .sideBar__container{
+        width: 100%;
+    }
+
+    .sideBar__movies{
+        margin-top: 144px;
+    }
+
+    .sideBar__movies:nth-child(2) {
+        padding-bottom: 7px;
+        margin-top: 24px;
+    }
+
+    .sideBar__movies:nth-child(3){
+        margin-top: 15px;
+    }
+
+    .sideBar__account{
+        margin-top: 447px;
+    }
+
+    .sideBar__button{
+        right: 17.44px;
+        top: 17.44px;
+    }
+}

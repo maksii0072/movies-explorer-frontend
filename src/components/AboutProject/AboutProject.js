@@ -1,34 +1,26 @@
 import './AboutProject.css';
 
-function AboutProject() {
+function AboutProject({}) {
   return (
-<>
-      <section className="about-project" id="about">
-        <div className="about-project__container">
-          <h2 className="about-project__title section-title">О&nbsp;проекте</h2>
-          <div className="about-project__content">
-            <div className="about-project__info">
-              <h3 className="about-project__info-header">Дипломный проект включал 5&nbsp;этапов</h3>
-              <p className="about-project__info-description">
-                Составление плана, работу над бэкендом, вёрстку, добавление функциональности и&nbsp;финальные доработки.
-              </p>
+    <section className='aboutProject'>
+        <h2 className='aboutProject__title'>О проекте</h2>
+        <div className='aboutProject__plan'>
+            <div className='aboutProject__box'>
+              <h3 className='aboutProject__subtitle'>Дипломный проект включал 5 этапов</h3>
+              <p className='aboutProject__text'>Составление плана, работу над бэкендом, вёрстку, добавление функциональности и финальные доработки.</p>
             </div>
-            <div className="about-project__info">
-              <h3 className="about-project__info-header">На&nbsp;выполнение диплома ушло 5&nbsp;недель</h3>
-              <p className="about-project__info-description">
-                У&nbsp;каждого этапа был мягкий и&nbsp;жёсткий дедлайн, которые нужно было соблюдать, чтобы успешно защититься.
-              </p>
+            <div className='aboutProject__box'>
+              <h3 className='aboutProject__subtitle'>На выполнение диплома ушло 5 недель</h3>
+              <p className='aboutProject__text'>У каждого этапа был мягкий и жёсткий дедлайн, которые нужно было соблюдать, чтобы успешно защититься.</p>
             </div>
-          </div>
-          <div className="about-project__time">
-            <h3 className="about-project__time-header about-project__time-header_green">1&nbsp;неделя</h3>
-            <h3 className="about-project__time-header">4&nbsp;недели</h3>
-            <p className="about-project__time-description">Back-end</p>
-            <p className="about-project__time-description">Front-end</p>
-          </div>
         </div>
-      </section>
-  </>
+        <div className='aboutProject__progress'>
+          <p className='aboutProject__week'>1 неделя</p>
+          <p className='aboutProject__week'>4 недели</p>
+          <p className='aboutProject__caption'>Back-end</p>
+          <p className='aboutProject__caption'>Front-end</p>
+        </div>
+    </section>
   );
 }
 

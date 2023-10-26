@@ -1,48 +1,22 @@
-  import './Portfolio.css';
-  import arrow from '../../images/arrow.svg';
+import './Portfolio.css';
 
-  function Portfolio() {
-    return (
-      <>
-      <section className="portfolio">
-        <h3 className="portfolio__title">Портфолио</h3>
-        <nav>
-        <ul  className="portfolio__list">
-          <li>
-            <a
-              href="https://github.com/maksii0072/how-to-learn"
-              className="portfolio__link portfolio__link-border"
-              target="_blank"
-              rel="noreferrer">
-              <p className="portfolio__text">Статичный сайт</p>
-              <img className="portfolio__image" src={arrow} alt="стрелка" />
-            </a>
+function Portfolio({}) {
+  return (
+    <section className='portfolio'>
+        <h2 className='portfolio__subtitle'>Портфолио</h2>
+        <ul className='portfolio__links'>
+          <li className='portfolio__item'>
+            <a href="https://github.com/maksii0072/how-to-learn" target='_blank' rel='noreferrer' className='portfolio__link'>Статичный сайт<p className='portfolio__text'>&#8599;</p></a>
           </li>
-          <li>
-            <a
-              href="https://github.com/maksii0072/russian-travel"
-              className="portfolio__link portfolio__link-border"
-              target="_blank"
-              rel="noreferrer">
-              <p className="portfolio__text">Адаптивный сайт</p>
-              <img className="portfolio__image" src={arrow} alt="стрелка" />
-            </a>
+          <li className='portfolio__item'>
+            <a href="https://github.com/maksii0072/russian-travel" target='_blank' rel='noreferrer' className='portfolio__link'>Адаптивный сайт<p className='portfolio__text'>&#8599;</p></a>
           </li>
-          <li>
-            <a
-              href="https://github.com/maksii0072/express-mesto-gha"
-              className="portfolio__link"
-              target="_blank"
-              rel="noreferrer">
-              <p className="portfolio__text">Одностраничное приложение</p>
-              <img className="portfolio__image" src={arrow} alt="стрелка" />
-            </a>
+          <li className='portfolio__item'>
+            <a href="https://github.com/maksii0072/express-mesto-gha" target='_blank' rel='noreferrer' className='portfolio__link'>Одностраничное приложение<p className='portfolio__text'>&#8599;</p></a>
           </li>
         </ul>
-        </nav>
-      </section>
-      </>
-    );
-  }
+    </section>
+  );
+}
 
-  export default Portfolio;
+export default Portfolio;

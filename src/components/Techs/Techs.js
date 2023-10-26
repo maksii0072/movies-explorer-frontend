@@ -1,27 +1,35 @@
 import './Techs.css';
 
-function Techs() {
+function Techs({}) {
   return (
-    <>
-    <section className="techs" id="techs">
-      <div className="techs__container">
-        <h2 className="techs__title section-title">Технологии</h2>
-        <h3 className="techs__heading">7&nbsp;технологий</h3>
-        <p className="techs__description">
-        На&nbsp;курсе веб-разработки мы&nbsp;освоили технологии, которые применили в&nbsp;дипломном проекте.
-        </p>
-        <ul className="techs__list">
-          <li className="techs__list-item">HTML</li>
-          <li className="techs__list-item">CSS</li>
-          <li className="techs__list-item">JS</li>
-          <li className="techs__list-item">React</li>
-          <li className="techs__list-item">Git</li>
-          <li className="techs__list-item">Express.js</li>
-          <li className="techs__list-item">mongoDB</li>
+    <section className='techs'>
+        <h2 className='techs__subtitle'>Технологии</h2>
+        <h3 className='techs__title'>7 технологий</h3>
+        <p className='techs__text'>На курсе веб-разработки мы освоили технологии, которые применили в дипломном проекте.</p>
+        <ul className='techs__progress'>
+          <li className='techs__item'>
+            <p className='techs__caption'>HTML</p>
+          </li>
+          <li className='techs__item'>
+            <p className='techs__caption'>CSS</p>
+          </li>
+          <li className='techs__item'>
+            <p className='techs__caption'>JS</p>
+          </li>
+          <li className='techs__item'>
+            <p className='techs__caption'>React</p>
+          </li>
+          <li className='techs__item'>
+            <p className='techs__caption'>Git</p>
+          </li>
+          <li className='techs__item'>
+            <p className='techs__caption'>Express.js</p>
+          </li>
+          <li className='techs__item'>
+            <p className='techs__caption'>mongoDB</p>
+          </li>
         </ul>
-      </div>
     </section>
-    </>
   );
 }
 

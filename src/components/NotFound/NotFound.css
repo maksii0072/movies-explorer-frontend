@@ -1,71 +1,72 @@
-.not-found {
+.notFound{
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  color: #fff;
+  padding-top: 246px;
+  background-color: #202020;
 }
 
-.not-found__title {
+.notFound__title{
   margin: 0;
-  margin-top: 246px;
-  font-weight: 400;
+  color: #FFF;
+  text-align: center;
   font-size: 140px;
-  line-height: 169.43px;
-  text-align: center;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
-.not-found__text {
-  margin-top: 5px;
-  font-weight: 400;
+.notFound__text{
+  margin: 5px 0 184px;
+  color: #FFF;
+  text-align: center;
   font-size: 16px;
-  line-height: 19.46px;
-  text-align: center;
-}
-
-.not-found__button {
-  margin-top: 184px;
-  margin-bottom: 60px;
-  min-height: 17px;
-  text-decoration: none;
+  font-style: normal;
   font-weight: 400;
-  font-size: 14px;
-  line-height: 17px;
-  text-align: center;
-  color: #4285F4;
+  line-height: normal;
 }
 
-.not-found__button:hover {
-  color: #3DDC84;
+.notFound__link{
+  width: 42px;
+  padding: 0;
+  margin: 0 auto;
+  border: none;
+  background-color: transparent;
+  color: #4285F4;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  transition: opacity .5s linear;
+}
+
+.notFound__link:hover {
+  opacity: .8;
   cursor: pointer;
 }
 
-@media screen and (max-width: 769px) {
-  .not-found__title {
-    margin-top: 408px;
-  }
-
-  .not-found__button {
-    margin-bottom: 184px;
+@media screen and (max-width: 900px){
+  .notFound{
+    padding-top: 408px;
   }
 }
 
-@media screen and (max-width: 480px) {
-  .not-found__title {
-    margin-top: 329px;
+@media screen and (max-width: 560px){
+  .notFound{
+    padding-top: 329px;
+  }
+
+  .notFound__title{
     font-size: 80px;
-    line-height: 96.82px;
   }
 
-  .not-found__text {
-    margin-top: 10px;
+  .notFound__text{
+    margin: 10px 0 284px;
     font-size: 12px;
-    line-height: 14.52px;
   }
 
-  .not-found__button {
-    margin-top: 284px;
-    margin-bottom: 30px;
-    min-height: 15px;
+  .notFound__link{
+    width: 36px;
     font-size: 12px;
-    line-height: 14.52px;
   }
 }

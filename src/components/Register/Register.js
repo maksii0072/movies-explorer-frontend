@@ -1,84 +1,78 @@
-import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import useValidation from "../../utils/Validation";
-import './Register.css';
+import React from 'react';
+import '../Form/Form.css';
+import Form from '../Form/Form';
+import useForm from '../../hooks/useForm';
+import { EMAIL_REGEX, USER_REGEX } from '../../utils/Constants/constants';
 
+function Register({ onRegistr, isLoading }) {
+  const { enteredValues, errors, handleChange, isFormValid } = useForm();
 
-
-function Register({ onRegister, errorMessage }) {
-
-  const {inputValue, errors, isValid, handleChange, resetValidation} = useValidation();
-
-  function handleSubmit(evt) {
-    evt.preventDefault();
-    onRegister(inputValue);
+  function handleSubmit(e) {
+    e.preventDefault();
+    // eslint-disable-next-line no-lone-blocks
+    {onRegistr({
+      name: enteredValues.name,
+      email: enteredValues.email,
+      password: enteredValues.password,
+    })};
   }
 
-  useEffect(() => {resetValidation()}, [resetValidation]);
-
   return (
-    <main className='main'>
-      <section className='signup'>
-        <Link className='signup__link-logo' to='/' />
-        <h1 className='signup__title'>Добро пожаловать!</h1>
-        <form className='signup__form' onSubmit={handleSubmit} noValidate>
-          <label className='signup__label'>
-            Имя
-            <input
-              className={`signup__input ${!errors.name ? '' : 'signup__inputNotValid'}`}
-              type='text'
-              name='name'
-              placeholder=''
-              minLength={2}
-              maxLength={40}
-              value={inputValue.name || ''}
-              required
-              onChange={handleChange}
-            />
-          </label>
-          <span className='signup__error'>{errors.name || ''}</span>
-          <label className='signup__label'>
-            E-mail
-            <input
-              className={`signup__input ${!errors.email ? '' : 'signup__inputNotValid'}`}
-              type='email'
-              name='email'
-              autoComplete='off'
-              placeholder=''
-              value={inputValue.email || ''}
-              pattern='^[a-zA-Z0-9+\._\-]+@[a-zA-Z0-9]+\.[a-zA-Z0-9]{2,4}$'
-              required
-              onChange={handleChange}
-            />
-          </label>
-          <span className='signup__error'>{errors.email || ''}</span>
-          <label className='signup__label'>
-            Пароль
-            <input
-              className={`signup__input ${!errors.password ? '' : 'signup__inputNotValid'}`}
-              type='password'
-              name='password'
-              autoComplete='off'
-              placeholder=''
-              minLength={3}
-              maxLength={20}
-              value={inputValue.password || ''}
-              required
-              onChange={handleChange}
-            />
-          </label>
-          <span className='signup__error'>{errors.password || ''}</span>
-          <span className='signup__errorMessage'>{errorMessage}</span>
-          <button className={`signup__submit-button ${isValid ? '' : 'signup__submit-button_disable'}`} type='submit' disabled={!isValid}>
-            Зарегистрироваться
-          </button>
-          <p className='signup__text'>
-            Уже зарегистрированы?
-            <Link className='signup__link' to='/signin'>Войти</Link>
-          </p>
-        </form>
-      </section>
-    </main>
+    <Form
+      title="Добро пожаловать!"
+      buttonText="Зарегистрироваться"
+      question="Уже зарегистрированы?"
+      linkText=" Войти"
+      link="/signin"
+      onSubmit={handleSubmit}
+      isDisabled={!isFormValid}
+      isLoading={isLoading}>
+      <label className="form__field">
+        Имя
+      </label>
+      <input
+        name="name"
+        className="form__input"
+        id="name-input"
+        type="text"
+        minLength="2"
+        maxLength="40"
+        required
+        onChange={handleChange}
+        value={enteredValues.name || ''}
+        pattern={USER_REGEX}
+        title="Поле должно содержать только латиницу, кириллицу, пробел или дефис"
+      />
+      <span className="form__input-error">{errors.name}</span>
+      <label className="form__field">
+        E-mail
+      </label>
+      <input
+        name="email"
+        className="form__input"
+        id="email-input"
+        type="email"
+        required
+        onChange={handleChange}
+        pattern={EMAIL_REGEX}
+        value={enteredValues.email || ''}
+      />
+      <span className="form__input-error">{errors.email}</span>
+      <label className="form__field">
+        Пароль
+      </label>
+      <input
+        name="password"
+        className="form__input"
+        id="password-input"
+        type="password"
+        required
+        minLength={6}
+        onChange={handleChange}
+        value={enteredValues.password || ''}
+      />
+      <span className="form__input-error">{errors.password}</span>
+    </Form>
   );
 }
 

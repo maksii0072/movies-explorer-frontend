@@ -1,88 +1,148 @@
-.header{
-  max-width: 1140px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 0 auto;
+.header {
   padding: 0 70px;
-  height: 74px;
-}
-
-.header_main{
-  background-color: #202020;
-}
-
-.header__link-logo{
-  display: block;
-  width: 38px;
-  height: 38px;
-  background-image: url('../../images/logo.svg');
-  transition: opacity .5s linear;
-}
-
-.header__link-logo:hover{
-  opacity: .8;
-  cursor: pointer;
-}
-
-.header__infoblock{
+  min-height: 74px;
   display: flex;
+  align-items: center;
+  position: relative;
+  justify-content: space-between;
 }
 
-.header__signup{
-  padding: 8px 30px;
+.header__button-container {
+  margin-left: auto;
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  list-style: none;
+}
+
+.header__button-container_films {
+  padding-left: 100px;
+  display: flex;
+  gap: 16px;
+  list-style: none;
+}
+
+.header__button {
+  min-height: 32px;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: #FFF;
-  text-align: right;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 16px;
   text-decoration: none;
-  transition: opacity .5s linear;
 }
 
-.header__signup:hover{
-  opacity: .7;
+.header__button_active {
+  font-weight: 500;
+}
+
+.header__button:hover {
   cursor: pointer;
+  color: #3DDC84;
 }
 
-.header__signin{
-  padding: 8px 20px;
+.header__button-green {
   color: #000;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 16px;
-  text-decoration: none;
-  border: none;
-  border-radius: 3px;
   background-color: #3DDC84;
-  transition: opacity .5s linear;
+  min-width: 76px;
+  border-radius: 3px;
 }
 
-.header__signin:hover{
-  opacity: .8;
+.header__button-green:hover {
+  cursor: pointer;
+  background-color: #000;
+}
+
+.header__account-button {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  color: #fff;
+  text-decoration: none;
+  width: 100px;
+  height: 30px;
+  background: transparent;
+}
+
+.header__account-button:hover {
+  cursor: pointer;
+  color: #3DDC84;
+}
+
+.header__account-image {
+  padding: 9.7px 9.8px 9.6px 9.8px;
+  background-color: #313131;
+  width: 10.38px;
+  height: 10.67px;
+  border-radius: 6px;
+}
+
+.header__account-image:hover {
+  cursor: pointer;
+  background-color: #3DDC84;
+}
+
+.header__burger-button {
+  padding: 0;
+  width: 44px;
+  height: 44px;
+  display: none;
+  background: transparent;
+  border: none;
+  justify-self: center;
+  border-radius: 3px;
+}
+
+.header__burger-button:hover {
+  background-color: #3DDC84;
   cursor: pointer;
 }
 
-@media screen and (max-width: 900px){
-  .header{
-      padding: 0 30px;
+@media screen and (max-width: 1023px) {
+  .header {
+    padding: 0 30px;
+  }
+
+  .header__button-container_films {
+    display: none;
+  }
+
+  .header__account-button {
+    display: none;
+  }
+
+  .header__burger-button {
+    display: flex;
   }
 }
 
-@media screen and (max-width: 560px){
-  .header{
-      padding: 0 14px;
+@media screen and (max-width: 576px) {
+  .header {
+    padding: 0 14px;
+    margin-top: 0;
   }
 
-  .header__signup{
-      padding: 5px 14px;
-      font-size: 10px;
+  .header__button-container {
+    gap: 14px;
   }
 
-  .header__signin{
-      padding: 5px 12px;
-      font-size: 10px;
+  .header__button {
+    min-height: 26px;
+    font-size: 10px;
+    line-height: 16px;
+  }
+
+  .header__burger-button {
+    width: 40px;
+    height: 43px;
+  }
+
+  .header__button-black {
+    min-width: 54px;
   }
 }

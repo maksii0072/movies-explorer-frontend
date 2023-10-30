@@ -1,52 +1,68 @@
-import { useLocation } from 'react-router-dom';
-import { EXTERNAL_URL } from '../../utils/Constants/constants';
+import React, { useEffect, useState } from "react";
 import "./MoviesCard.css";
-import duration from '../../utils/utils';
+import { durationConverter } from "../../utils/utils";
 
-function MoviesCard({ id, movieData, savedMovies, onSaveMovie, onDeleteMovie }) {
+function MoviesCard({
+  card,
+  isSavedFilms,
+  handleLikeClick,
+  handleCardDelete,
+  savedMovies,
+}) {
+  const defaultsaved =
+    savedMovies.filter((m) => m.movieId === card.id).length > 0;
 
-  const { pathname } = useLocation();
-  const isMoviePage = pathname === '/movies';
-  const isFilmSaved = savedMovies.some(savedMovie => savedMovie.nameEN === movieData.nameEN);
+  const [saved, setSaved] = useState(defaultsaved);
 
-  if (isMoviePage && isFilmSaved) {
-    const savedFilm = savedMovies.find(savedMovie => savedMovie.nameEN === movieData.nameEN);
-    id = savedFilm._id
+  function onCardClick() {
+    if (saved) {
+      handleCardDelete(card, setSaved);
+    } else {
+      handleLikeClick(card, saved, setSaved);
+    }
   }
 
-  function handleSaveMovie() {
-    onSaveMovie(movieData);
-  }
-
-  function handleDeleteMovie() {
-    onDeleteMovie(id);
+  function onDelete() {
+    handleCardDelete(card);
   }
 
   return (
-    <li className='moviesCard'>
-      <a className='moviesCard__trailerLink' href={movieData.trailerLink} target='_blank' rel='noreferrer'>
-        <img className='moviesCard__preview' src={ pathname === '/movies' ? `${EXTERNAL_URL}${movieData.image.url}` : movieData.image} alt={`${movieData.nameRU}`} />
+    <li className="card">
+      <a href={card.trailerLink} target="_blank" rel="noreferrer">
+        <img
+          className="card__image"
+          alt={card.nameRU}
+          src={
+            isSavedFilms
+              ? card.image
+              : `https://api.nomoreparties.co/${card.image.url}`
+          }
+        />
       </a>
-      <div className="moviesCard__text">
-        <h2 className="moviesCard__title">{movieData.nameRU}</h2>
-        {
-          isMoviePage ? (
-            <button
-              className={`moviesCard__heart-button ${isFilmSaved ? 'moviesCard__heart-button-red' : ''} `}
-              type="button"
-              onClick={isFilmSaved ? handleDeleteMovie : handleSaveMovie}
-            />
-          ) : (
-            <button
-              className={`moviesCard__heart-button moviesCard__heart-button-saved`}
-              type="button"
-              onClick={handleDeleteMovie}
-            />
-          )
-        }
+      <div className="card__container">
+        <figcaption className="card__info-container">
+          <h2 className="card__text">{card.nameRU}</h2>
+          <p className="card__time">{durationConverter(card.duration)}</p>
+        </figcaption>
+        {isSavedFilms ? (
+          <button
+            type="button"
+            className="card__delete-button"
+            onClick={onDelete}
+          ></button>
+        ) : (
+          <button
+            type="button"
+            className={`${
+              saved
+                ? "card__like-button card__like-button_active"
+                : "card__like-button"
+            }`}
+            onClick={onCardClick}
+          ></button>
+        )}
       </div>
-      <p className='moviesCard__duration'>{duration(movieData.duration)}</p>
-    </li >
+    </li>
   );
 }
 

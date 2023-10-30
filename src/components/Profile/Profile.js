@@ -1,79 +1,114 @@
-import { useContext, useEffect, useState } from 'react';
-import useValidation from "../../utils/Validation";
-import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import React, { useContext, useState, useEffect } from 'react';
 import './Profile.css';
+import '../Form/Form.css';
+import Header from '../Header/Header';
+import BurgerMenu from '../BurgerMenu/BurgerMenu';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import useForm from '../../hooks/useForm';
+import { USER_REGEX } from '../../utils/Constants/constants';
+import { EMAIL_REGEX } from '../../utils/Constants/constants';
 
-function Profile({ signOut, onUpdateUser, isEditing, onEditing, errorMessage }) {
-  const [isFormDirty, setFormDirty] = useState(false);
-  const {inputValue, errors, isValid, handleChange, resetValidation} = useValidation();
+function Profile({
+  handleMenuClick,
+  menuOpen,
+  closePopups,
+  loggedIn,
+  handleUpdateUser,
+  isLoading,
+  handleSignOut,
+  isSuccess,
+  InfoTooltipPopup
+}) {
   const currentUser = useContext(CurrentUserContext);
+  const { enteredValues, errors, handleChange, isFormValid, resetForm } = useForm();
+  const [isLastValues, setIsLastValues] = useState(false);
 
-  function handleSubmit(evt) {
-    evt.preventDefault();
-    onUpdateUser(inputValue);
-  }
-
-  useEffect(() => {resetValidation({ name: currentUser.name, email: currentUser.email })}, [currentUser]);
 
   useEffect(() => {
-    setFormDirty((currentUser.name !== inputValue.name) || (currentUser.email !== inputValue.email));
-  }, [inputValue, currentUser, isValid]);
+    if (currentUser) {
+      resetForm(currentUser);
+    }
+  }, [currentUser, resetForm]);
+
+  useEffect(() => {
+    if (currentUser.name === enteredValues.name && currentUser.email === enteredValues.email) {
+      setIsLastValues(true);
+    } else {
+      setIsLastValues(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [enteredValues]);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    handleUpdateUser({
+      name: enteredValues.name,
+      email: enteredValues.email,
+    });
+
+  }
 
   return (
-    <main className='main'>
-      <section className='profile'>
-        <h1 className='profile__title'>{`Привет, ${currentUser.name}`}</h1>
-        <form className='profile__form' onSubmit={handleSubmit} noValidate>
-          <label className='profile__label'>
-            Имя
+    <section className="profile">
+      <BurgerMenu
+        menuOpen={menuOpen}
+        closePopups={closePopups} />
+      <Header loggedIn={loggedIn} handleMenuClick={handleMenuClick} />
+      <main className='profile__container'>
+        <h3 className="profile__title">Привет, {currentUser.name}!</h3>
+        <form id="form" className="profile__form" onSubmit={handleSubmit} noValidate>
+          <div className='profile__row'>
+            <label className="profile__field">
+              Имя
+            </label>
             <input
-              className={`profile__input ${!errors.name ? '' : 'profile__inputNotValid'} ${!isEditing ? '' : 'profile__input-editing'}`}
-              type='text'
-              name='name'
-              placeholder=''
-              minLength={2}
-              maxLength={40}
-              value={inputValue.name || ''}
-              required
+              name="name"
+              className="profile__input"
+              id="name-input"
+              type="text"
+              minLength="2"
+              maxLength="40"
               onChange={handleChange}
-              readOnly={!isEditing}
+              value={enteredValues.name || ''}
+              pattern={USER_REGEX}
+              required
             />
-          </label>
-          <span className='profile__error'>{errors.name || ''}</span>
-          <label className='profile__label'>
-            E-mail
+            <span className="profile__input-error">{errors.name}</span>
+          </div>
+          <div className="profile__border"></div>
+          <div className='profile__row'>
+            <label className="profile__field">
+              E-mail
+            </label>
             <input
-              className={`profile__input ${!errors.email ? '' : 'profile__inputNotValid'} ${!isEditing ? '' : 'profile__input-editing'}`}
-              type='email'
-              name='email'
-              autoComplete='off'
-              placeholder=''
-              value={inputValue.email || ''}
-              pattern='^[a-zA-Z0-9+\._\-]+@[a-zA-Z0-9]+\.[a-zA-Z0-9]{2,4}$'
-              required
+              name="email"
+              className="profile__input"
+              id="email-input"
+              type="email"
               onChange={handleChange}
-              readOnly={!isEditing}
+              pattern={EMAIL_REGEX}
+              value={enteredValues.email || ''}
+              required
             />
-          </label>
-          <span className='profile__error'>{errors.email || ''}</span>
-          {
-            !isEditing ? (
-              <>
-                <span className='profile__errorMessage'>{errorMessage}</span>
-                <button className='profile__button' type='button' onClick={onEditing}>Редактировать</button>
-                <button className='profile__signout' type='button' onClick={signOut}>Выйти из аккаунта</button>
-              </>
-            ) : (
-              <>
-                <button className={`profile__submit-button ${isValid ? '' : 'profile__submit-button_disable'} ${isFormDirty ? '' : 'profile__submit-button_disable'} `} type='submit' disabled={!isValid || !isFormDirty} >
-                  Сохранить
-                </button>
-              </>
-            )
-          }
+            <span className="profile__input-error">{errors.email}</span>
+          </div>
+          <button
+            type="submit"
+            disabled={!isFormValid ? true : false}
+            className={
+              !isFormValid || isLoading || isLastValues
+                ? 'profile__button-save form__button-save_inactive'
+                : 'profile__button-save'
+            }
+          >
+            Редактировать
+          </button>
+          <button type="button" className="profile__button-logout profile__button" onClick={handleSignOut}>
+            Выйти из аккаунта
+          </button>
         </form>
-      </section>
-    </main>
+      </main>
+    </section>
   );
 }
 

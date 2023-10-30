@@ -1,16 +1,20 @@
-.filterCheckbox{
+.filter {
   margin: 0 auto;
   padding-top: 31px;
   display: flex;
   justify-content: center;
 }
 
-
-.filterCheckbox__group{
-  position: relative;
+.filter__text {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  margin-left: 12px;
+  color: #fff;
 }
 
-.filterCheckbox__input{
+.filter__checkbox {
   width: 36px;
   height: 20px;
   border: none;
@@ -21,10 +25,12 @@
   cursor: pointer;
   appearance: none;
 }
-.filterCheckbox__input:hover{
+.filter__checkbox:hover {
   background-color: #e1dcdc;
+
 }
-.filterCheckbox__input::after{
+
+.filter__checkbox::after {
   height: 8px;
   width: 8px;
   position: absolute;
@@ -35,7 +41,8 @@
   border-radius: 50%;
   transition: 0.3s ease;
 }
-.filterCheckbox__input:checked::after{
+
+.filter__checkbox:checked::after {
   height: 8px;
   width: 8px;
   position: absolute;
@@ -47,39 +54,24 @@
   transition: 0.4s ease;
   transform: translate(16px);
 }
-.filterCheckbox__input:checked{
+
+.filter__checkbox:checked {
   background-color: #3DDC84;
 }
 
-
-.filterCheckbox__span{
-  font-style: normal;
-  font-weight: 400;
-  font-size: 13px;
-  line-height: 18px;
-  margin-left: 12px;
-  color: #fff;
-}
-
-
-@media screen and (max-width: 900px) {
-  .filterCheckbox{
+@media screen and (max-width: 769px) {
+  .filter {
     padding-top: 41px;
   }
-
-  .filterCheckbox__span{
-      margin: 0 15px 0 19px;
-  }
 }
 
-@media screen and (max-width: 560px) {
-  .filterCheckbox {
+@media screen and (max-width: 576px) {
+  .filter {
     padding-top: 74px;
   }
 
-  .filterCheckbox__span{
-
-      font-size: 12px;
-      line-height: 18px;
+  .filter__text {
+    font-size: 11px;
+    line-height: 18px;
   }
 }

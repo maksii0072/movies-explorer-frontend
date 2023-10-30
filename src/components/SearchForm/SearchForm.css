@@ -1,21 +1,36 @@
-.searchForm {
-  padding: 70px 70px 38px;
-  background-color: #202020;
-
+.search {
+  padding: 80px 70px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
 }
 
-.searchForm__form {
+.search__form-border {
+  border-bottom: 1px solid #424242;
+  margin-top: 40px;
+}
+
+.search__form {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  max-width: 1140px;
-  margin: 0 auto;
 }
 
+.search__form-error {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: red;
+}
 
-
-.searchForm__input {
+.search__input {
   min-height: 48px;
   background-color: #2F2F2F;
   padding: 0 0 0 22px;
@@ -30,14 +45,13 @@
   border-radius: 4px;
   color: #8B8B8B;
   cursor:pointer;
-}
 
-.searchForm__input:focus{
+}
+.search__input:focus {
   background-color: #313030;
 }
 
-
-.searchForm__button {
+.search__button {
   color: #fff;
   font-weight: 500;
   font-size: 12px;
@@ -50,59 +64,31 @@
   border-radius: 3px;
 }
 
-.searchForm__button:not(.searchForm__button_disable):hover {
-  opacity: .8;
+.search__button:hover {
   cursor: pointer;
+  opacity: 0.6;
 }
 
-.searchForm__button_disable {
-  background-color: #F8F8F8;
-  color: #C2C2C2;
-}
-
-.searchForm__error {
-  display: block;
-  height: 12px;
-  margin: 20px 0 0;
-  text-overflow: ellipsis;
-  color: #EE3465;
-  font-size: 10px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  overflow: hidden;
-  white-space: nowrap;
-  text-align: center;
-}
-
-
-@media screen and (max-width: 900px) {
-  .searchForm{
-    padding: 80px 30px 77px;
+@media screen and (max-width: 769px) {
+  .search {
+    padding:57px 30px 94px 30px;
   }
 }
 
-@media screen and (max-width: 560px) {
-  .searchForm{
-    padding: 80px 10px 13px;
+@media screen and (max-width: 576px) {
+  .search {
+    padding: 77px 14px 49px;
   }
 
-  .searchForm__form{
-    flex-wrap: wrap;
-    padding: 0;
-    border-radius: 0;
-    background-color: transparent;
+  .search__input {
+    width: calc(100% - 80px);
+    text-align: left;
+    font-size: 12px;
+    line-height: 18px;
+    min-height: 44px;
   }
 
-  .searchForm__search{
-    width: 100%;
-    padding: 19px;
-    background-color: #2F2F2F;
-    border-radius: 9px;
-  }
-
-  .searchForm__input{
-    background-image: none;
-    text-indent: 0;
+  .search__form-border {
+    margin-top: 44px;
   }
 }

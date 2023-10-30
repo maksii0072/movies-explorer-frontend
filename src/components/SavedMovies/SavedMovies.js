@@ -1,69 +1,59 @@
-import { useState, useEffect } from 'react';
+import React, { useEffect, useState} from 'react';
+import './SavedMovies.css';
+import Header from '../Header/Header';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
-import './SavedMovies.css';
-import { NOTFOUND_ERROR, SHORTS_DURATION } from '../../utils/Constants/constants';
+import Footer from '../Footer/Footer';
+import BurgerMenu from '../BurgerMenu/BurgerMenu';
+import { filterMovies, durationFilter } from '../../utils/utils';
 
-function SavedMovies({ savedMovies, onDeleteMovie }) {
-  const [notFoundMessage, setNotFoundMessage] = useState(false);
-  const [searchKeyword, setSearchKeyword] = useState('');
-  const [isFilter, setFilter] = useState(false);
-  const [searchResults, setSearchResults] = useState([]);
-  const [filteredMovies, setFilteredMovies] = useState([]);
+function SavedMovies({ menuOpen, closePopups, loggedIn, handleMenuClick, handleCardDelete, savedMovies }) {
+  const [filteredMovies, setFilteredMovies] = useState(savedMovies); //отфильтрованные по запросу и чекбоксу
+  const [isShortMovies, setIsShortMovies] = useState(false); //включен ли чекбокс короткометражек
+  const [isNotFound, setIsNotFound] = useState(false); //фильмы по запросу не найдены
+  const [searchQuery, setSearchQuery] = useState('');
+
+  function handleSearchMovies(query) {
+    setSearchQuery(query);
+  }
+
+  function handleShortMovies() {
+    setIsShortMovies(!isShortMovies);
+  }
 
   useEffect(() => {
-    setFilteredMovies(handleFilter(searchResults));
-  }, [searchResults]);
+    const moviesList = filterMovies(savedMovies, searchQuery);
+    setFilteredMovies(isShortMovies ? durationFilter(moviesList) : moviesList);
+  }, [savedMovies, isShortMovies, searchQuery]);
 
   useEffect(() => {
-    handleSearchMovies();
-  }, [searchKeyword, isFilter, savedMovies]);
-
-  function handleSearchMovies() { // Ищет фильмы
-    setSearchResults([]);
-    try {
-      if (searchKeyword.length > 0) {
-        const searchResults = handleSearch(savedMovies, searchKeyword);
-        if (searchResults.length === 0) {
-          console.log(NOTFOUND_ERROR);
-          setNotFoundMessage(true);
-        } else {
-          setSearchResults(searchResults);
-          setNotFoundMessage(false);
-        }
-      }
-    } catch (err) {
-      console.log(err);
+    if (filteredMovies.length === 0) {
+      setIsNotFound(true);
+    } else {
+      setIsNotFound(false);
     }
-  }
-
-  function handleSearch(array, keyword) { // Осуществляет поиск в массиве фильмов (array) по заданному ключевому слову
-    return array.filter((movie) => { // Проверяет каждый фильм в исходном массиве на наличие ключевого слова и возврата его
-      return movie.nameRU.toLowerCase().includes(keyword.toLowerCase().trim()) || movie.nameEN.toLowerCase().includes(keyword.toLowerCase().trim());
-    });
-  }
-
-  function handleFilter(array) { // Осуществляет поиск в массиве фильмов (array) по короткометражкам
-    return array.filter((movie) => {
-      return movie.duration <= SHORTS_DURATION;
-    });
-  }
-
+  }, [filteredMovies]);
   return (
-    <main className='savedMovies'>
-      <SearchForm
-        searchKeyword={searchKeyword}
-        setSearchKeyword={setSearchKeyword}
-        isFilter={isFilter}
-        setFilter={setFilter}
-      />
-      <MoviesCardList
-        notFoundMessage={notFoundMessage}
-        moviesData={!searchKeyword ? isFilter ? filteredMovies : savedMovies : isFilter ? filteredMovies : searchResults}
+    <section className="movies">
+      <BurgerMenu
+        menuOpen={menuOpen}
+        closePopups={closePopups} />
+      <Header
+        loggedIn={loggedIn}
+        handleMenuClick={handleMenuClick} />
+      <main>
+        <SearchForm
+        onFilter={handleShortMovies}
+        handleSearchMovies={handleSearchMovies} />
+        <MoviesCardList
+        isNotFound={isNotFound}
+        isSavedFilms={true}
+        cards={filteredMovies}
         savedMovies={savedMovies}
-        onDeleteMovie={onDeleteMovie}
-      />
-    </main>
+        handleCardDelete={handleCardDelete} />
+      </main>
+      <Footer />
+    </section>
   );
 }
 

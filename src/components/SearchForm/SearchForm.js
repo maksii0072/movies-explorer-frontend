@@ -1,67 +1,52 @@
-import { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import moviesApi from '../../utils/MoviesApi';
-import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 import './SearchForm.css';
+import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 
-function SearchForm({ searchKeyword, setSearchKeyword, isFilter, setFilter, movies, setMovies, setPreloaderPopupOpen }) {
+function SearchForm({ handleSearchMovies, onFilter, isShortMovies }) {
+  const [queryError, setQueryError] = useState(false);
+  const [movieQuery, setMovieQuery] = useState('');
   const { pathname } = useLocation();
-  const [searchQuery, setSearchQuery] = useState('');
-  const [isWarningVisible, setWarningVisible] = useState(false);
-  const [isValid, setIsValid] = useState(false);
 
-  function handleChange(evt) {
-    setWarningVisible(false);
-    setIsValid(false);
-    setSearchQuery(evt.target.value);
+  useEffect(() => {
+    if (pathname === '/movies' && localStorage.getItem('movieSearch')) {
+      const localQuery = localStorage.getItem('movieSearch');
+      setMovieQuery(localQuery);
+    }
+  }, [pathname]);
+
+  function handleChangeQuery(e) {
+    setMovieQuery(e.target.value);
   }
 
-  async function handleSubmit(evt) {
-    evt.preventDefault();
-    if (pathname === '/movies'){
-      if (!movies.length) {
-        setPreloaderPopupOpen(true);
-        await moviesApi
-          .getAllMovies()
-          .then((allMovies) => {
-            localStorage.setItem('movies', JSON.stringify(allMovies));
-            setMovies(allMovies);
-          })
-          .catch(console.error)
-          .finally(() => setPreloaderPopupOpen(false));
-      }
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (movieQuery.length === 0) {
+      setQueryError(true);
+    } else {
+      setQueryError(false);
+      handleSearchMovies(movieQuery);
     }
-
-    if (searchQuery.trim() === '') {
-      setWarningVisible(true);
-      setIsValid(true);
-      return;
-    }
-
-    setSearchKeyword(searchQuery);
   }
-
-  useEffect(() => {setSearchQuery(searchKeyword)}, [searchKeyword]);
 
   return (
-<section className='searchForm'>
-<form className='searchForm__form' onSubmit={handleSubmit} noValidate>
+    <section className="search">
+      <form className="search__form" id="form" onSubmit={handleSubmit}>
         <input
-            className='searchForm__input'
-            type='text'
-            name='movietitle'
-            placeholder='Фильм'
-            value={searchQuery}
-            minLength='1'
-            required
-            onChange={handleChange}
+          name="query"
+          className="search__input"
+          id="search-input"
+          type="text"
+          placeholder="Фильм"
+          onChange={handleChangeQuery}
+          value={movieQuery || ''}
           >
         </input>
-        <button className={`searchForm__button ${isValid ? 'searchForm__button_disable' : ''}`} type='submit' disabled={isValid}>Найти</button>
+        <button className="search__button" type="submit">Найти</button>
       </form>
-      <FilterCheckbox isFilter={isFilter} setFilter={setFilter} />
-
-      <span className='searchForm__error'>{isWarningVisible && 'Нужно ввести ключевое слово'}</span>
+      <FilterCheckbox onFilter={onFilter} isShortMovies={isShortMovies} />
+      {queryError && <span className="search__form-error">Нужно ввести ключевое слово</span>}
+      <span className="search__form-border"></span>
     </section>
   );
 }

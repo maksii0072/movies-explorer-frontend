@@ -44,7 +44,7 @@ function SearchForm({ handleSearchMovies, onFilter, isShortMovies }) {
         </input>
         <button className="search__button" type="submit">Найти</button>
       </form>
-      <FilterCheckbox onFilter={onFilter} isShortMovies={isShortMovies} />
+      <FilterCheckbox onFilter={() => onFilter(movieQuery)} isShortMovies={isShortMovies} />
       {queryError && <span className="search__form-error">Нужно ввести ключевое слово</span>}
       <span className="search__form-border"></span>
     </section>

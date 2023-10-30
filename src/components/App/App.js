@@ -20,6 +20,8 @@ function App() {
   const [savedMovies, setSavedMovies] = useState([]);
   const [isSuccess, setIsSuccess] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+  const [isAuthLoading, setIsAuthLoading] = useState(false);
+  const [authError, setAuthError] = useState('');
   const [InfoTooltipPopup, setInfoToolTipPopup] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
@@ -37,7 +39,7 @@ function App() {
           console.log(err);
         });
     }
-  }, []);
+  }, [loggedIn]);
 
   useEffect(() => {
     // загрузка данных пользователя с сервера
@@ -67,7 +69,7 @@ function App() {
 
   //регистрация пользователя
   function handleRegisterSubmit({ name, email, password }) {
-    setIsLoading(true);
+    setIsAuthLoading(true);
     const userData = api
       .register({ name, email, password })
       .then(() => {
@@ -82,18 +84,19 @@ function App() {
         console.log(err);
       })
       .finally(() => {
-        setIsLoading(false);
+        setIsAuthLoading(false);
         setInfoToolTipPopup(true);
       });
   }
 
   //авторизация пользователя
   function handleLoginSubmit({ email, password }) {
-    setIsLoading(true);
+    setIsAuthLoading(true);
     const userData = api
       .login({ email, password })
       .then(() => {
         if (userData) {
+          localStorage.setItem('hasJWT', 'true')
           localStorage.setItem("logged", true);
           setCurrentUser({ email, password });
           navigate("/movies", { replace: true });
@@ -101,9 +104,10 @@ function App() {
       })
       .catch((err) => {
         console.log(err);
+        setAuthError(err)
       })
       .finally(() => {
-        setIsLoading(false);
+        setIsAuthLoading(false);
       });
   }
 
@@ -126,7 +130,10 @@ function App() {
 
   //Проверка токена и авторизация пользователя
   useEffect(() => {
-    tokenCheck();
+    const isLogged = localStorage.getItem('hasJWT')
+    if (isLogged && isLogged === 'true') {
+      tokenCheck();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -151,10 +158,10 @@ function App() {
   function handleSignOut() {
     api
       .logout()
-      .then((res) => {
-        localStorage.setItem("logged", false);
+      .then(() => {
         setCurrentUser({});
         localStorage.clear();
+        localStorage.setItem('hasJWT', 'false')
         navigate("/", { replace: true });
       })
       .catch((err) => {
@@ -212,7 +219,9 @@ function App() {
                   <Login
                     loggedIn={loggedIn}
                     onLogin={handleLoginSubmit}
-                    isLoading={isLoading}
+                    isLoading={isAuthLoading}
+                    authError={authError}
+                    setAuthError={setAuthError}
                   />
                 }
               />
@@ -221,7 +230,10 @@ function App() {
                 element={
                   <Register
                     onRegistr={handleRegisterSubmit}
-                    isLoading={isLoading}
+                    isLoading={isAuthLoading}
+                    loggedIn={loggedIn}
+                    authError={authError}
+                    setAuthError={setAuthError}
                   />
                 }
               />

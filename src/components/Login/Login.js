@@ -2,17 +2,28 @@ import '../Form/Form.css';
 import Form from '../Form/Form';
 import useForm from '../../hooks/useForm';
 import { EMAIL_REGEX } from '../../utils/Constants/constants';
+import {Navigate} from "react-router-dom";
+import React, {useEffect} from "react";
 
-function Login({ onLogin, isLoading }) {
+function Login({ onLogin, isLoading, loggedIn, authError, setAuthError }) {
   const { enteredValues, errors, handleChange, isFormValid } = useForm();
 
   function handleSubmit(e) {
     e.preventDefault();
-    // eslint-disable-next-line no-lone-blocks
-    {onLogin({
+    onLogin({
       email: enteredValues.email,
       password: enteredValues.password,
-    })};
+    })
+  }
+
+  useEffect(() => {
+    return () => {
+      setAuthError('')
+    }
+  }, []);
+
+  if (loggedIn) {
+    return <Navigate to='/' replace/>
   }
 
   return (
@@ -52,6 +63,8 @@ function Login({ onLogin, isLoading }) {
         value={enteredValues.password || ''}
       />
       <span className="form__input-error">{errors.password}</span>
+
+      {authError}
     </Form>
   );
 }

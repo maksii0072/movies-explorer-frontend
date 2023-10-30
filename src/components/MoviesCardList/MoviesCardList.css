@@ -42,11 +42,11 @@
   cursor: pointer;
 }
 
-@media screen and (max-width: 1180px) {
-  .cards__list {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
+/*@media screen and (max-width: 1180px) {*/
+/*  .cards__list {*/
+/*    grid-template-columns: repeat(3, 1fr);*/
+/*  }*/
+/*}*/
 
 @media screen and (max-width: 1023px) {
   .cards__list {

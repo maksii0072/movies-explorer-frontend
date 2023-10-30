@@ -4,7 +4,7 @@ import './MoviesCardList.css';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import Preloader from '../Preloader/Preloader';
 import SearchError from '../SearchError/SearchError';
-import { DESKTOP_VERSION, TABLET_VERSION, MOBILE_VERSION, DESKTOP, TABLET,MOVIES_CARDS_1180,MOVIES_CARDS_768,MOVIES_CARDS_480 } from '../../utils/Constants/constants';
+import { DESKTOP_VERSION, TABLET_VERSION, MOBILE_VERSION, DESKTOP, TABLET,MOVIES_CARDS_1023,MOVIES_CARDS_576,MOVIES_CARDS_480 } from '../../utils/Constants/constants';
 
 function MoviesCardList({
   handleLikeClick,
@@ -16,16 +16,15 @@ function MoviesCardList({
   savedMovies,
   cards
 }) {
-
   const [shownCards, setShownCards] = useState(0);
   const { pathname } = useLocation();
 
   function cardsCount() {
     const display = window.innerWidth;
     if (display > DESKTOP) {
-      setShownCards(MOVIES_CARDS_1180);
+      setShownCards(MOVIES_CARDS_1023);
     } else if (display > TABLET) {
-      setShownCards(MOVIES_CARDS_768);
+      setShownCards(MOVIES_CARDS_576);
     } else if (display < TABLET) {
       setShownCards(MOVIES_CARDS_480);
     }
@@ -45,7 +44,7 @@ function MoviesCardList({
 
   useEffect(() => {
     cardsCount();
-  }, []);
+  }, [cards]);
 
   useEffect(() => {
     setTimeout(() => {

@@ -16,7 +16,10 @@ function Movies({
   loggedIn,
   handleCardDelete,
   savedMovies }) {
-  const [initialMovies, setInitialMovies] = useState([]);
+  const [allMovies, setAllMovies] = useState(() => {
+    const allMovies = JSON.parse(localStorage.getItem('allMovies'))
+    return allMovies ? allMovies : []
+  });
   const [filteredMovies, setFilteredMovies] = useState([]);
   const [isShortMovies, setIsShortMovies] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -25,23 +28,14 @@ function Movies({
 
   function handleFilterMovies(movies, query, short) {
     const moviesList = filterMovies(movies, query, short);
-    setInitialMovies(moviesList);
     setFilteredMovies(short ? durationFilter(moviesList) : moviesList);
     localStorage.setItem('movies', JSON.stringify(moviesList));
-    localStorage.setItem('allMovies', JSON.stringify(movies));
   }
 
-  function handleShortMovies() {
-    setIsShortMovies(!isShortMovies);
-    if (!isShortMovies) {
-      if (durationFilter(initialMovies).length === 0) {
-        setFilteredMovies(durationFilter(initialMovies));
-      } else {
-        setFilteredMovies(durationFilter(initialMovies));
-      }
-    } else {
-      setFilteredMovies(initialMovies);
-    }
+  function handleShortMovies(query) {
+    setIsShortMovies(prev => !prev)
+    handleFilterMovies(allMovies, query, !isShortMovies)
+    localStorage.setItem('movieSearch', query);
     localStorage.setItem('shortMovies', !isShortMovies);
   }
 
@@ -49,13 +43,15 @@ function Movies({
     localStorage.setItem('movieSearch', query);
     localStorage.setItem('shortMovies', isShortMovies);
 
-    if (localStorage.getItem('allMovies')) {
-      const movies = JSON.parse(localStorage.getItem('allMovies'));
-      handleFilterMovies(movies, query, isShortMovies);
+    if (allMovies.length) {
+      handleFilterMovies(allMovies, query, isShortMovies);
     } else {
       setIsLoading(true);
       movies.getCards()
         .then((cardsData) => {
+          setAllMovies(cardsData)
+          localStorage.setItem('allMovies', JSON.stringify(cardsData));
+
           handleFilterMovies(cardsData, query, isShortMovies);
           setIsReqError(false);
         })
@@ -80,7 +76,6 @@ function Movies({
   useEffect(() => {
     if (localStorage.getItem('movies')) {
       const movies = JSON.parse(localStorage.getItem('movies'));
-      setInitialMovies(movies);
       if (localStorage.getItem('shortMovies') === 'true') {
         setFilteredMovies(durationFilter(movies));
       } else {

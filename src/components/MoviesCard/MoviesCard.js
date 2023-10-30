@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./MoviesCard.css";
 import { durationConverter } from "../../utils/utils";
 

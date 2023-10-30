@@ -7,11 +7,12 @@ import Portfolio from '../Portfolio/Portfolio';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 
-function Main() {
-
-  return(
-<>
-      <Header/>
+function Main({loggedIn, handleMenuClick}) {
+  return (
+    <>
+      <Header
+      loggedIn={loggedIn}
+      handleMenuClick={handleMenuClick} />
       <main>
         <Promo />
         <AboutProject />
@@ -20,7 +21,7 @@ function Main() {
         <Portfolio />
       </main>
       <Footer />
-</>
+    </>
   );
 }
 

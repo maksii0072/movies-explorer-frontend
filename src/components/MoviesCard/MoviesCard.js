@@ -1,70 +1,68 @@
-import './MoviesCard.css';
-import image1 from '../../images/pic_1.jpg';
-import image2 from '../../images/pic_2.jpg';
-import image3 from '../../images/pic_3.jpg';
+import React, { useState } from "react";
+import "./MoviesCard.css";
+import { durationConverter } from "../../utils/utils";
 
-function MoviesCard(props) {
-  const { trailerLink, handleLikeClick, isLiked } = props;
+function MoviesCard({
+  card,
+  isSavedFilms,
+  handleLikeClick,
+  handleCardDelete,
+  savedMovies,
+}) {
+  const defaultsaved =
+    savedMovies.filter((m) => m.movieId === card.id).length > 0;
+
+  const [saved, setSaved] = useState(defaultsaved);
+
+  function onCardClick() {
+    if (saved) {
+      handleCardDelete(card, setSaved);
+    } else {
+      handleLikeClick(card, saved, setSaved);
+    }
+  }
+
+  function onDelete() {
+    handleCardDelete(card);
+  }
+
   return (
-    <>
-      <li className="card">
-        <a href={trailerLink} target="_blank" rel="noreferrer">
-          <img
-            className="card__image"
-            alt='постер к фильму 33 слова о дизайне'
-            src={image1}
-          />
-        </a>
-        <div className="card__container">
-          <figcaption className="card__info-container">
-            <h2 className="card__text">33 слова о дизайне</h2>
-            <p className="card__time">1ч 47м</p>
-          </figcaption>
-          <div className="card__container-button">
-          <button type="button" className="card__delete-button"></button>
-          <button type="button" className={`card__like-button ${ isLiked ? "card__like-button_active" : ""}`} onClick={handleLikeClick}></button>
-          </div>
-        </div>
-      </li>
-      <li className="card">
-        <a href={trailerLink} target="_blank" rel="noreferrer">
-          <img
-            className="card__image"
-            alt='постер к фильму Киноальманах «100 лет дизайна'
-            src={image2}
-          />
-        </a>
-        <div class="card__container">
-          <figcaption className="card__info-container">
-            <h2 className="card__text">Киноальманах «100 лет дизайна»</h2>
-            <p className="card__time">1ч 3м</p>
-          </figcaption>
-          <div className="card__container-button">
-          <button type="button" className="card__delete-button"></button>
-          <button type="button" className={`card__like-button ${ isLiked ? "card__like-button_active" : ""}`} onClick={handleLikeClick}></button>
-          </div>
-        </div>
-      </li>
-      <li className="card">
-        <a href={trailerLink} target="_blank" rel="noreferrer">
-          <img
-            className="card__image"
-            alt='постер к фильму В погоне за Бенкси'
-            src={image3}
-          />
-        </a>
-        <div className="card__container">
-          <figcaption className="card__info-container">
-            <h2 className="card__text">В погоне за Бенкси</h2>
-            <p className="card__time">1ч 42м</p>
-          </figcaption>
-          <div className="card__container-button">
-          <button type="button" className="card__delete-button"></button>
-          <button type="button" className={`card__like-button ${ isLiked ? "card__like-button_active" : ""}`} onClick={handleLikeClick}></button>
-          </div>
-        </div>
-      </li>
-    </>
+    <li className="card">
+      <a href={card.trailerLink} target="_blank" rel="noreferrer">
+        <img
+          className="card__image"
+          alt={card.nameRU}
+          src={
+            isSavedFilms
+              ? card.image
+              : `https://api.nomoreparties.co/${card.image.url}`
+          }
+        />
+      </a>
+      <div className="card__container">
+        <figcaption className="card__info-container">
+          <h2 className="card__text">{card.nameRU}</h2>
+          <p className="card__time">{durationConverter(card.duration)}</p>
+        </figcaption>
+        {isSavedFilms ? (
+          <button
+            type="button"
+            className="card__delete-button"
+            onClick={onDelete}
+          ></button>
+        ) : (
+          <button
+            type="button"
+            className={`${
+              saved
+                ? "card__like-button card__like-button_active"
+                : "card__like-button"
+            }`}
+            onClick={onCardClick}
+          ></button>
+        )}
+      </div>
+    </li>
   );
 }
 

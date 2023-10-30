@@ -2,9 +2,10 @@ import { NavLink, Link } from "react-router-dom";
 import './BurgerMenu.css';
 import account from '../../images/icon_account.svg';
 
-function BurgerMenu(props) {
-  const { menuOpen, closePopups } = props;
+function BurgerMenu({ menuOpen, closePopups }) {
   const menuClassName = `menuElement ${menuOpen ? "menu_opened" : ""}`;
+  const navLinkClass = ({ isActive }) =>
+    `menu__link ${isActive ? "menu__link_active" : ""}`;
 
   return (
     <div className={menuClassName}>
@@ -17,12 +18,12 @@ function BurgerMenu(props) {
             </NavLink>
           </li>
           <li className="menu__item">
-            <NavLink to="/movies" className='menu__link menu__link_active'>
+            <NavLink to="/movies" className={navLinkClass}>
               Фильмы
             </NavLink>
           </li>
           <li className="menu__item">
-            <NavLink to="/saved-movies" className='menu__link'>
+            <NavLink to="/saved-movies" className={navLinkClass}>
               Сохраненные фильмы
             </NavLink>
           </li>
